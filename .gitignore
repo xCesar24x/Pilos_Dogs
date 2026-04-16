@@ -1,0 +1,16 @@
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# VS Code
+.vscode/
+
+# Dependencias
+node_modules/
+*.lock
+
+# Archivos temporales
+*.tmp
+*.temp
