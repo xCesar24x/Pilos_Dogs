@@ -5,25 +5,330 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menú - Pilo's Dogs</title>
     <meta name="view-transition" content="same-origin">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        body, html {
+        :root {
+            --rojo: #ff2200;
+            --naranja: #ff7700;
+            --mostaza: #fdb913;
+            --negro: #080808;
+            --carbon: #141414;
+            --humo: #1e1e1e;
+            --blanco: #f5f0e8;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            background-color: #080808;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
+        }
+
+        html, body {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: var(--negro);
+            color: var(--blanco);
+            font-family: 'Montserrat', sans-serif;
             min-height: 100vh;
         }
-        img {
+
+        .menu-container {
             width: 100%;
-            max-width: 600px;
-            height: auto;
-            display: block;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .menu-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-top: 20px;
+        }
+
+        .menu-header h1 {
+            font-family: 'Bangers', cursive;
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, var(--rojo), var(--mostaza));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .menu-header p {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 20px;
+            background: rgba(253, 185, 19, 0.2);
+            border: 1px solid var(--mostaza);
+            color: var(--mostaza);
+            text-decoration: none;
+            border-radius: 10px;
+            transition: 0.3s;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .back-btn:hover {
+            background: rgba(253, 185, 19, 0.3);
+        }
+
+        .categories-container {
+            display: grid;
+            gap: 20px;
+        }
+
+        .menu-category {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            animation: fadeUp 0.6s ease;
+        }
+
+        .category-header {
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(255,42,0,0.3), rgba(253,185,19,0.2));
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            user-select: none;
+            transition: 0.3s;
+        }
+
+        .category-header:hover {
+            background: linear-gradient(135deg, rgba(255,42,0,0.4), rgba(253,185,19,0.3));
+        }
+
+        .category-header h2 {
+            font-size: 1.3rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .category-toggle {
+            font-size: 1.2rem;
+            transition: transform 0.3s;
+            color: var(--mostaza);
+        }
+
+        .menu-category.expanded .category-toggle {
+            transform: rotate(180deg);
+        }
+
+        .category-items {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, opacity 0.4s ease;
+            opacity: 0;
+            padding: 0 20px;
+        }
+
+        .menu-category.expanded .category-items {
+            max-height: 2000px;
+            opacity: 1;
+            padding: 20px;
+        }
+
+        .items-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+        }
+
+        .menu-item {
+            background: rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-5px);
+            border-color: rgba(253, 185, 19, 0.5);
+            box-shadow: 0 10px 30px rgba(253, 185, 19, 0.2);
+        }
+
+        .item-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, rgba(255,42,0,0.2), rgba(253,185,19,0.1));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            overflow: hidden;
+        }
+
+        .item-content {
+            padding: 15px;
+        }
+
+        .item-name {
+            font-weight: 900;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .item-description {
+            font-size: 0.85rem;
+            opacity: 0.7;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .item-price {
+            color: var(--mostaza);
+            font-weight: 900;
+            font-size: 1.2rem;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ─── SCROLLBAR PERSONALIZADO ─── */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--negro); }
+        ::-webkit-scrollbar-thumb { 
+            background: linear-gradient(var(--rojo), var(--mostaza)); 
+            border-radius: 10px; 
+        }
+
+        @media (max-width: 768px) {
+            .menu-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .category-header h2 {
+                font-size: 1.1rem;
+            }
+
+            .items-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .menu-container {
+                padding: 15px;
+            }
         }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Bebas+Neue&family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <img src="menu.jpeg" alt="Menú Oficial Pilo's Dogs">
+    <div class="menu-container">
+        <a href="index.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> Volver
+        </a>
+
+        <div class="menu-header">
+            <h1>MENÚ PILO'S DOGS</h1>
+            <p>Descubre nuestros deliciosos productos</p>
+        </div>
+
+        <div class="categories-container" id="categoriesContainer"></div>
+    </div>
+
+    <script>
+        // DATOS DEL MENÚ (Puedes editar estos datos directamente aquí)
+        const menuData = [
+            {
+                name: "Perros Calientes",
+                icon: "🌭",
+                items: [
+                    { name: "Pilo's Clásico", desc: "Perro caliente tradicional con salsas caseras", price: "₡2,500", image: "assets/menu/pilos_clasico_1776317189407.png" },
+                    { name: "Megapilo", desc: "Doble salchicha con tocino y queso fundido", price: "₡4,500", image: "assets/menu/megapilo_1776317204645.png" },
+                    { name: "Pilo Picante", desc: "Con jalapeños, salsa picante y cebolla morada", price: "₡2,800", image: "assets/menu/pilo_picante_1776317217605.png" }
+                ]
+            },
+            {
+                name: "Combos",
+                icon: "🍟",
+                items: [
+                    { name: "Combo Clásico", desc: "Perro + papas + bebida", price: "₡4,200", image: "assets/menu/combo_clasico_1776317232565.png" },
+                    { name: "Combo Premium", desc: "2 perros + papas grandes + 2 bebidas", price: "₡8,500", image: "assets/menu/combo_premium_1776317255759.png" },
+                    { name: "Combo Amigos", desc: "3 perros + papas + bebida grande", price: "₡10,500", image: "assets/menu/combo_amigos_1776317272303.png" }
+                ]
+            },
+            {
+                name: "Bebidas",
+                icon: "🥤",
+                items: [
+                    { name: "Refresco Lata", desc: "Coca-Cola, Fanta o Sprite", price: "₡1,200", image: "assets/menu/refresco_lata_1776317289677.png" },
+                    { name: "Jugo Natural", desc: "Naranja, melón o piña", price: "₡1,500", image: "assets/menu/jugo_natural_1776317305682.png" },
+                    { name: "Limonada Casera", desc: "Refrescante y hecha en el momento", price: "₡1,800", image: "assets/menu/limonada_casera_1776317324977.png" }
+                ]
+            },
+            {
+                name: "Acompañamientos",
+                icon: "🧅",
+                items: [
+                    { name: "Papas Fritas", desc: "Crujientes y doradas, tamaño regular", price: "₡1,500", image: "assets/menu/papas_fritas_1776317338786.png" },
+                    { name: "Papas Grandes", desc: "Extra crocantes, porción grande", price: "₡2,200", image: "assets/menu/papas_grandes_1776317353811.png" },
+                    { name: "Aros de Cebolla", desc: "Crujientes y sabrosos", price: "₡2,000", image: "assets/menu/aros_cebolla_1776317365239.png" }
+                ]
+            }
+        ];
+
+        // RENDERIZAR MENÚ
+        function renderMenu() {
+            const container = document.getElementById('categoriesContainer');
+            container.innerHTML = menuData.map((category, index) => `
+                <div class="menu-category" data-category="${index}">
+                    <div class="category-header">
+                        <h2><span style="margin-right: 10px;">${category.icon}</span>${category.name}</h2>
+                        <span class="category-toggle">▼</span>
+                    </div>
+                    <div class="category-items">
+                        <div class="items-grid">
+                            ${category.items.map(item => `
+                                <div class="menu-item">
+                                    <div class="item-image">
+                                        <img src="${item.image}" alt="${item.name}" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;">
+                                    </div>
+                                    <div class="item-content">
+                                        <div class="item-name">${item.name}</div>
+                                        <div class="item-description">${item.desc}</div>
+                                        <div class="item-price">${item.price}</div>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            // Agregar interactividad a las categorías
+            document.querySelectorAll('.menu-category').forEach(category => {
+                category.querySelector('.category-header').addEventListener('click', () => {
+                    category.classList.toggle('expanded');
+                });
+            });
+
+            // Expandir primera categoría por defecto
+            document.querySelector('.menu-category')?.classList.add('expanded');
+        }
+
+        // Llamar al cargar la página
+        window.addEventListener('load', renderMenu);
+    </script>
 </body>
 </html>
