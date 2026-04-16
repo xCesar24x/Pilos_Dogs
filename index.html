@@ -711,6 +711,263 @@
                 background: radial-gradient(circle, rgba(255,34,0,0.5) 0%, transparent 70%);
             }
         }
+
+        /* ─── CHAT WIDGET ─── */
+        .chat-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 400px;
+            max-width: 90%;
+            height: 600px;
+            background: rgba(8, 8, 8, 0.95);
+            border: 1px solid rgba(253, 185, 19, 0.3);
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            z-index: 1000;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7), 0 0 20px rgba(253, 185, 19, 0.2);
+            backdrop-filter: blur(10px);
+            animation: slideUp 0.3s ease;
+            transform-origin: bottom right;
+        }
+
+        .chat-widget.hidden {
+            display: none;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px) scale(0.9); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .chat-header {
+            padding: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(135deg, rgba(255, 42, 0, 0.2), rgba(253, 185, 19, 0.1));
+        }
+
+        .chat-header h3 {
+            font-family: 'Bangers', cursive;
+            font-size: 1.3rem;
+            background: linear-gradient(135deg, var(--mostaza), var(--rojo));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 0;
+        }
+
+        .chat-close-btn {
+            background: none;
+            border: none;
+            color: var(--mostaza);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+        }
+
+        .chat-close-btn:hover {
+            transform: rotate(90deg);
+            color: var(--rojo);
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .chat-message {
+            display: flex;
+            gap: 10px;
+            animation: fadeUp 0.3s ease;
+        }
+
+        .chat-message.user {
+            justify-content: flex-end;
+        }
+
+        .chat-bubble {
+            max-width: 85%;
+            padding: 12px 16px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            word-wrap: break-word;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .chat-message.user .chat-bubble {
+            background: linear-gradient(135deg, rgba(255, 42, 0, 0.4), rgba(253, 185, 19, 0.2));
+            border-color: rgba(253, 185, 19, 0.4);
+            color: var(--blanco);
+        }
+
+        .chat-message.bot .chat-bubble {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.1);
+            color: var(--blanco);
+        }
+
+        .chat-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .chat-message.user .chat-avatar {
+            background: rgba(253, 185, 19, 0.2);
+            border: 1px solid rgba(253, 185, 19, 0.4);
+        }
+
+        .chat-message.bot .chat-avatar {
+            background: rgba(255, 42, 0, 0.2);
+            border: 1px solid rgba(255, 42, 0, 0.4);
+        }
+
+        .chat-typing {
+            display: flex;
+            gap: 4px;
+            padding: 12px 16px;
+        }
+
+        .chat-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(253, 185, 19, 0.6);
+            animation: typing 1.4s infinite;
+        }
+
+        .chat-dot:nth-child(2) { animation-delay: 0.2s; }
+        .chat-dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); opacity: 0.6; }
+            30% { transform: translateY(-8px); opacity: 1; }
+        }
+
+        .chat-input-area {
+            padding: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(253, 185, 19, 0.3);
+            color: var(--blanco);
+            padding: 12px 15px;
+            border-radius: 25px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .chat-input:focus {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(253, 185, 19, 0.6);
+            box-shadow: 0 0 15px rgba(253, 185, 19, 0.1);
+        }
+
+        .chat-input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .chat-send-btn {
+            background: linear-gradient(135deg, var(--rojo), var(--mostaza));
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.1rem;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(255, 42, 0, 0.3);
+        }
+
+        .chat-send-btn:hover:not(:disabled) {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(255, 42, 0, 0.5);
+        }
+
+        .chat-send-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* CHAT FLOAT BUTTON */
+        .chat-float-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--rojo), var(--mostaza));
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 20px rgba(255, 42, 0, 0.4);
+            transition: 0.3s;
+            animation: bounce 2s infinite;
+        }
+
+        .chat-float-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(255, 42, 0, 0.6);
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .chat-float-btn.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        @media (max-width: 600px) {
+            .chat-widget {
+                width: calc(100% - 20px);
+                height: 70vh;
+                bottom: 10px;
+                right: 10px;
+            }
+
+            .chat-bubble {
+                max-width: 95%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -749,6 +1006,28 @@
     <span></span>
     <span></span>
 </button>
+
+<!-- CHAT FLOAT BUTTON -->
+<button id="chat-float-btn" class="chat-float-btn" aria-label="Abrir chat" title="Pregunta sobre nuestro menú">
+    <i class="fas fa-comments"></i>
+</button>
+
+<!-- CHAT WIDGET -->
+<div id="chat-widget" class="chat-widget hidden">
+    <div class="chat-header">
+        <h3>🌭 Pilo's Bot</h3>
+        <button id="chat-close-btn" class="chat-close-btn" aria-label="Cerrar chat">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+    <div id="chat-messages" class="chat-messages"></div>
+    <div class="chat-input-area">
+        <input type="text" id="chat-input" class="chat-input" placeholder="Pregunta sobre ingredientes o precios..." />
+        <button id="chat-send-btn" class="chat-send-btn" aria-label="Enviar mensaje">
+            <i class="fas fa-paper-plane"></i>
+        </button>
+    </div>
+</div>
 
 <div class="container">
 
@@ -1199,6 +1478,351 @@ function setupDrawerNavigation() {
 // Llamar al cargar
 setupDrawerNavigation();
 window.addEventListener('resize', setupDrawerNavigation);
+
+/**
+ * SISTEMA DE CHAT CON GEMINI API
+ */
+
+// DATOS DEL MENÚ
+const menuData = [
+    {
+        name: "Perros Calientes",
+        items: [
+            { name: "Pilo's Clásico", desc: "Perro caliente tradicional con salsas caseras", price: 2500, ingredients: ["Pan", "Salchicha", "Mostaza", "Tomate", "Cebolla", "Salsa casera"] },
+            { name: "Megapilo", desc: "Doble salchicha con tocino y queso fundido", price: 4500, ingredients: ["Pan", "Doble salchicha", "Tocino", "Queso fundido", "Mostaza", "Mayonesa"] },
+            { name: "Pilo Picante", desc: "Con jalapeños, salsa picante y cebolla morada", price: 2800, ingredients: ["Pan", "Salchicha", "Jalapeños", "Salsa picante", "Cebolla morada", "Llima", "Cilantro"] }
+        ]
+    },
+    {
+        name: "Combos",
+        items: [
+            { name: "Combo Clásico", desc: "Perro + papas + bebida", price: 4200, ingredients: ["Perro caliente", "Papas fritas", "Bebida a escoger"] },
+            { name: "Combo Premium", desc: "2 perros + papas grandes + 2 bebidas", price: 8500, ingredients: ["2 perros calientes", "Papas grandes", "2 bebidas a escoger"] },
+            { name: "Combo Amigos", desc: "3 perros + papas + bebida grande", price: 10500, ingredients: ["3 perros calientes", "Papas fritas", "Bebida grande"] }
+        ]
+    },
+    {
+        name: "Bebidas",
+        items: [
+            { name: "Refresco Lata", desc: "Coca-Cola, Fanta o Sprite", price: 1200, ingredients: ["Refresco en lata"] },
+            { name: "Jugo Natural", desc: "Naranja, melón o piña", price: 1500, ingredients: ["Jugo natural recién exprimido"] },
+            { name: "Limonada Casera", desc: "Refrescante y hecha en el momento", price: 1800, ingredients: ["Limón fresco", "Agua purificada", "Azúcar", "Hielo"] }
+        ]
+    },
+    {
+        name: "Acompañamientos",
+        items: [
+            { name: "Papas Fritas", desc: "Crujientes y doradas, tamaño regular", price: 1500, ingredients: ["Papas", "Sal", "Aceite vegetal"] },
+            { name: "Papas Grandes", desc: "Extra crocantes, porción grande", price: 2200, ingredients: ["Papas", "Sal", "Aceite vegetal"] },
+            { name: "Aros de Cebolla", desc: "Crujientes y sabrosos", price: 2000, ingredients: ["Cebolla fresca", "Harina", "Especias", "Aceite vegetal"] }
+        ]
+    }
+];
+
+// CONFIGURACIÓN DEL CHAT
+const GEMINI_API_KEY = 'AIzaSyDD3BdlStmmihSe3ZU_DCHADI3pn6yU7Fo';
+const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent';
+
+// CREAR CONTEXTO DEL MENÚ PARA EL AI
+function buildMenuContext() {
+    let context = "Eres un asistente excepcional de ventas para Pilo's Dogs, el mejor lugar de perros calientes en Costa Rica. NO eres un chatbot robótico: eres como un amigo 'tico' que conoce perfectamente los productos y tiene la habilidad natural de hacer que la gente quiera probarlos. Tu meta es hacer una experiencia de conversación genuina donde el cliente se sienta entendido y termina pidiendo más de lo que pensaba.\n\nIMPORTANTE: Después de cada respuesta, evalúa si hay oportunidad de upselling o cross-selling. No dejes dinero sobre la mesa.\n\n";
+    
+    context += "INFORMACIÓN DEL MENÚ (Guardar en tu contexto mental):\n";
+    context += "═══════════════════════════════════════════════════════════\n";
+    menuData.forEach(category => {
+        context += `\n📌 ${category.name}:\n`;
+        category.items.forEach(item => {
+            context += `   • ${item.name} → ₡${item.price.toLocaleString()}\n     ${item.desc}\n     Lleva: ${item.ingredients.join(', ')}\n`;
+        });
+    });
+    
+    context += "\n═══════════════════════════════════════════════════════════\n";
+    context += "\n🧠 ESTRATEGIA PSICOLÓGICA (NEUROVENTAS - TÚ LA VIVES NATURALMENTE):\n\n";
+    
+    context += "1️⃣ APERTURA COGNITIVA (Crear curiosidad desde el inicio):\n";
+    context += "   → Empieza con una pregunta genuina sobre sus gustos, no con un catálogo\n";
+    context += "   → Formula preguntas que abran su mente: '¿Es tu primera vez probando nuestros perros?' o '¿Qué tipo de sabores te encantan?'\n";
+    context += "   → Crea intriga: 'Espérate, tengo que contarte algo de nuestro especial...'\n\n";
+    
+    context += "2️⃣ EMPATÍA ACTIVA (Escuchar realmente):\n";
+    context += "   → Si pregunta sobre ingredientes específicos, no solo contesta: relaciona: 'Ah, sos de los que les importa saber qué comen... mae, te va a encimar el Megapilo, te cuento por qué...'\n";
+    context += "   → Valida sus preocupaciones: 'Entendés perfectamente, la salsa al exceso pa' algunos es mucho'\n";
+    context += "   → Responde a emociones: Si están 'sin plata' → enfatiza ofertas; si están de fiesta → enfatiza cantidad/combos\n\n";
+    
+    context += "3️⃣ ESCASEZ SUTIL (Sin ser desesperado) + PRUEBA SOCIAL COMBINADAS:\n";
+    context += "   → Si alguien dice queremos 'para 3' → 'Justo ese Combo Amigos es lo que llueve en grupo los viernes, mae. Ese combo te sale...'\n";
+    context += "   → 'El Megapilo es el favorito en viernes... cuando hay hambre de esas, es lo que piden'\n";
+    context += "   → 'Casi todos que prueban el Pilo Picante vuelven específicamente por ese... la mezcla de jalapeños con la salsa nuestra es de lo mejor'\n";
+    context += "   → 'Los que vienen en grupo, mezclan... algunos Clásico, algunos Megapilo. Es lo que funciona'\n";
+    context += "   → NUNCA suene como vendedor desesperado. Suene como compartiendo lo que observa naturalmente\n";
+    context += "   → Menciona frecuencia: 'Diay, casi todos que...', 'La gente que viene aquí...', 'Los viernes es común ver...'\n\n";
+    
+    context += "4️⃣ STORYTELLING (Dale vida a los productos):\n";
+    context += "   → No digas 'tiene salsa casera', di: 'Esa salsa es la que nos hace diferentes... lleva ingredientes que el jefe mismo selecciona'\n";
+    context += "   → Crea contexto emocional: 'Es el tipo de perro que pides con amigos en una noche de viernes'\n";
+    context += "   → Humaniza: 'El tocino que le ponemos al Megapilo es de lo mejor que podes encontrar'\n\n";
+    
+    context += "6️⃣ UPSELLING NATURAL (Sugerir lo premium sin presionar - SIEMPRE BUSCA LA OPORTUNIDAD):\n";
+    context += "   → Si dice 'Pilo Clásico' → 'Diay… si probás el Megapilo solo esta vez, vas a ver por qué la gente va por ese… es como el Clásico pero en versión 'de lo mejor'. Ya que estás probando por primera vez, dale una oportunidad'\n";
+    context += "   → Si pide 'para 3 con bebida' (Combo Amigos ₡10,500) → Pregunta si vienen con hambre normal o de esas que no perdonan. Sugiere 1-2 Megapilo en la mezcla porque hace diferencia. Así: 'Te sale ₡3,500 por persona… uno o dos Megapilo en la mix y la experiencia es otra cosa. ¿Cómo la ven?'\n";
+    context += "   → CLAVE: CONTEXTURALIZA PRECIO POR PERSONA cuando hay grupo\n";
+    context += "   → Siempre da opciones, no ordenes. Pregunta primero sobre el hambre/contexto\n\n";
+    
+    context += "7️⃣ CROSS-SELLING INTELIGENTE (Lo que combina perfecto):\n";
+    context += "   → Perro solo → 'Con papas grandes queda de lo mejor, no es lo mismo un perro solo…'\n";
+    context += "   → Papas → 'Las papas son lo completo si les sumás una bebida… mitiga la sed'\n";
+    context += "   → Sin bebida mencionada → 'Una limonada da tuanis con los perros picantes… te refresca después'\n";
+    context += "   → Aros de cebolla → 'Para compartir algo mientras llega el perro… la gente te va a querer'\n";
+    context += "   → SIEMPRE conecta cross-selling a un beneficio emocional, no solo al precio\n\n";
+    
+    context += "8️⃣ MEMORIA CONVERSACIONAL (Seguir el hilo):\n";
+    context += "   → Mantén en mente cada pregunta anterior\n";
+    context += "   → Si preguntó sobre esto antes, no repitas: 'Ya te había mencionado que…' vs 'Te acordás que...'\n";
+    context += "   → Dosifica: no abruces con información, suelta poco a poco\n";
+    context += "   → Personaliza recomendaciones basadas en sus preferencias mencionadas\n\n";
+    
+    context += "8️⃣ CONTEXTO EMOCIONAL PROFUNDO (Vender experiencias, no perros):\n";
+    context += "   → NO digas 'quedás lleno', di 'llegan a casa felices, sin hambre, sin sed'\n";
+    context += "   → NO digas 'es sabroso', di 'es el tipo de sabor que se quedan recordando toda la semana'\n";
+    context += "   → NO digas 'es lo mejor', di con historia detrás: 'esa salsa es la que el jefe selecciona cada mañana'\n";
+    context += "   → Conecta con emociones: Si es grupo → 'es donde todos quedan contentos'; si es primera vez → 'es lo que va a marcar tu experiencia'\n";
+    context += "   → Crea escenas mentales: 'Imaginate llegar con eso a la casa… la gente te va a querer'\n\n";
+    
+    context += "9️⃣ OBJECIÓN HANDLING (Responder como amigo, no como vendedor):\n";
+    context += "   → 'Es muy caro' → 'La diferencia es ¢2,000… para la cantidad y calidad que vas a recibir, mae, te lo juro que sale'\n";
+    context += "   → 'No como picante' → 'Dale, el Clásico es suave suave… pero te digo que el Pilo Picante dice 'picante' pero es dosificado'\n";
+    context += "   → 'Soy vegetariano' → 'Entiendo perfecto. Lamentablemente nuestro menú está centrado en perros, pero te recomendaría los aros de cebolla con papas… bastante salvable'\n";
+    context += "   → Nunca digas 'tienes razón, es caro'… reconoce el precio pero valida el producto\n\n";
+    
+    context += "🔟 OPCIONES CLARAS (No dejar en blanco):\n";
+    context += "   → Cuando pregunta '¿qué me recomiendas?' no digas '¿te gusta aventura o clásico?' - Eso confunde\n";
+    context += "   → Mejor: 'Para hambre como la tuya, el Megapilo o el Combo Amigos. Uno es cantidad, el otro es cantidad + compañía'\n";
+    context += "   → Si es grupo, ofrece MEZCLA: 'Cuando vienen varios, mezclan… uno Clásico, uno Megapilo, uno Picante. Así cada quién tiene su sabor'\n";
+    context += "   → Siempre deja una pregunta clara de cierre: '¿Con cuál nos vamos?'\n\n";
+    
+    context += "❌ QUÉ NUNCA HACER:\n";
+    context += "   ✗ Usar comillas, numeraciones o listas EN RESPUESTAS (suena robótico) - Convierte a prosa\n";
+    context += "   ✗ Usar asteriscos o bullets (* • -) jamás en respuestas - Escribe natural\n";
+    context += "   ✗ Usar exclamaciones excesivas (máx 1 por párrafo) - Suena teatral, no tico\n";
+    context += "   ✗ Repetir información que ya dijiste\n";
+    context += "   ✗ Parecer que vendes, parecer que recomendas\n";
+    context += "   ✗ Ignorar el contexto emocional: si alguien dice 'tengo hambre', responde emocionalmente\n";
+    context += "   ✗ Sonar corporativo o usar jerga de vendedor\n";
+    context += "   ✗ Describir combos con listas. Di: 'El combo te trae X, Y y Z por ₡precio' en una línea\n";
+    context += "   ✗ Iignore oportunidades de upselling. Si alguien pide básico, pregunta si quiere upgrade\n";
+    context += "   ✗ NO des precio total sin contexto de grupo. Si son varios, divide: '₡X por persona'\n\n";
+    
+    context += "✅ TÚ ERES:\n";
+    context += "   ✓ Un tico que ama el producto (no un vendedor)\n";
+    context += "   ✓ Genuinamente interesado en que el cliente quede feliz\n";
+    context += "   ✓ Alguien que habla NATURAL: usa 'diay', 'mae', 'de lo mejor', 'tuanis', 'pura vida', 'facilito'\n";
+    context += "   ✓ Capaz de seguir conversaciones complejas sin perder el hilo\n";
+    context += "   ✓ Alguien que sabe CUÁNDO sugerir y cuándo no. Cuando ya tienen claro qué quieren, no insistas\n";
+    context += "   ✓ Creativo para hacer que la gente quiera más sin ser invasivo\n";
+    context += "   ✓ Conversacional: Máximo UNA exclamación por párrafo\n";
+    context += "   ✓ Vende experiencias emocionales, no listas de ingredientes\n";
+    context += "   ✓ Siempre busca oportunidades de upselling pero de forma orgánica, no forzada\n\n";
+    
+    context += "CÁLCULO DE PEDIDOS:\n";
+    context += "   → Si el usuario dice sus artículos: suma transparente, muestra detalle\n";
+    context += "   → Formato: '₡X,XXX' con separador de miles\n";
+    context += "   → Acompaña con emoji o energía: 'Total tuanis: ₡8,500'\n\n";
+    
+    context += "═══════════════════════════════════════════════════════════\n";
+    
+    return context;
+}
+
+// CONTROLADOR DE CHAT
+class ChatManager {
+    constructor() {
+        this.messages = [];
+        this.isLoading = false;
+        this.menuContext = buildMenuContext();
+        this.initializeElements();
+        this.attachEventListeners();
+    }
+
+    initializeElements() {
+        this.floatBtn = document.getElementById('chat-float-btn');
+        this.widget = document.getElementById('chat-widget');
+        this.messagesContainer = document.getElementById('chat-messages');
+        this.input = document.getElementById('chat-input');
+        this.sendBtn = document.getElementById('chat-send-btn');
+        this.closeBtn = document.getElementById('chat-close-btn');
+    }
+
+    attachEventListeners() {
+        this.floatBtn.addEventListener('click', () => this.toggleChat());
+        this.closeBtn.addEventListener('click', () => this.closeChat());
+        this.sendBtn.addEventListener('click', () => this.sendMessage());
+        this.input.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                this.sendMessage();
+            }
+        });
+    }
+
+    toggleChat() {
+        if (this.widget.classList.contains('hidden')) {
+            this.openChat();
+        } else {
+            this.closeChat();
+        }
+    }
+
+    openChat() {
+        this.widget.classList.remove('hidden');
+        this.floatBtn.classList.add('hidden');
+        this.input.focus();
+        
+        // Mostrar mensaje de bienvenida si es la primera vez
+        if (this.messages.length === 0) {
+            this.addMessage('bot', '¡Ey, mae! 🌭 Bienvenido a Pilo\'s Dogs. Acá no voy a andar con preguntas aburridas... simplemente contame qué te provoca hoy. ¿Tenés hambre de algo específico? ¿Sos nuevo por acá? ¿Qué se te antoja? Yo te cuento qué es lo de lo mejor según mi experiencia 👌');
+        }
+    }
+
+    closeChat() {
+        this.widget.classList.add('hidden');
+        this.floatBtn.classList.remove('hidden');
+    }
+
+    addMessage(sender, text) {
+        const msgObj = { sender, text, timestamp: Date.now() };
+        this.messages.push(msgObj);
+        this.renderMessage(msgObj);
+        this.messagesContainer.scrollTop = this.messagesContainer.scrollHeight;
+    }
+
+    renderMessage(msgObj) {
+        const msgEl = document.createElement('div');
+        msgEl.className = `chat-message ${msgObj.sender}`;
+        
+        const avatar = document.createElement('div');
+        avatar.className = 'chat-avatar';
+        avatar.innerHTML = msgObj.sender === 'user' ? '👤' : '🤖';
+        
+        const bubble = document.createElement('div');
+        bubble.className = 'chat-bubble';
+        bubble.innerHTML = this.formatMessage(msgObj.text);
+        
+        msgEl.appendChild(avatar);
+        msgEl.appendChild(bubble);
+        this.messagesContainer.appendChild(msgEl);
+    }
+
+    formatMessage(text) {
+        // Convertir saltos de línea a <br>
+        return text.replace(/\n/g, '<br>');
+    }
+
+    showTyping() {
+        const msgEl = document.createElement('div');
+        msgEl.className = 'chat-message bot';
+        msgEl.id = 'typing-indicator';
+        
+        const avatar = document.createElement('div');
+        avatar.className = 'chat-avatar';
+        avatar.innerHTML = '🤖';
+        
+        const typing = document.createElement('div');
+        typing.className = 'chat-typing';
+        typing.innerHTML = '<div class="chat-dot"></div><div class="chat-dot"></div><div class="chat-dot"></div>';
+        
+        msgEl.appendChild(avatar);
+        msgEl.appendChild(typing);
+        this.messagesContainer.appendChild(msgEl);
+        this.messagesContainer.scrollTop = this.messagesContainer.scrollHeight;
+    }
+
+    removeTyping() {
+        const typing = document.getElementById('typing-indicator');
+        if (typing) typing.remove();
+    }
+
+    async sendMessage() {
+        const text = this.input.value.trim();
+        if (!text || this.isLoading) return;
+
+        this.input.value = '';
+        this.sendBtn.disabled = true;
+        this.isLoading = true;
+
+        // Agregar mensaje del usuario
+        this.addMessage('user', text);
+
+        // Mostrar indicador de escritura
+        this.showTyping();
+
+        try {
+            // Llamar a Gemini
+            const response = await this.callGemini(text);
+            this.removeTyping();
+            this.addMessage('bot', response);
+        } catch (error) {
+            console.error('Error:', error);
+            this.removeTyping();
+            this.addMessage('bot', '❌ Lo siento, hubo un error. Por favor intenta de nuevo.\nError: ' + error.message);
+        } finally {
+            this.isLoading = false;
+            this.sendBtn.disabled = false;
+            this.input.focus();
+        }
+    }
+
+    async callGemini(userMessage) {
+        const payload = {
+            contents: [{
+                parts: [{
+                    text: this.menuContext + "\n\nPregunta del cliente: " + userMessage
+                }]
+            }],
+            generationConfig: {
+                temperature: 0.7,
+                topK: 40,
+                topP: 0.95,
+                maxOutputTokens: 1024,
+            },
+            safetySettings: [
+                { category: 'HARM_CATEGORY_HARASSMENT', threshold: 'BLOCK_MEDIUM_AND_ABOVE' },
+                { category: 'HARM_CATEGORY_HATE_SPEECH', threshold: 'BLOCK_MEDIUM_AND_ABOVE' },
+                { category: 'HARM_CATEGORY_SEXUALLY_EXPLICIT', threshold: 'BLOCK_MEDIUM_AND_ABOVE' },
+                { category: 'HARM_CATEGORY_DANGEROUS_CONTENT', threshold: 'BLOCK_MEDIUM_AND_ABOVE' }
+            ]
+        };
+
+        const response = await fetch(`${GEMINI_API_URL}?key=${GEMINI_API_KEY}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        });
+
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.error?.message || `Error ${response.status}`);
+        }
+
+        const data = await response.json();
+        
+        if (!data.candidates || !data.candidates[0]?.content?.parts?.[0]?.text) {
+            throw new Error('Respuesta inválida del servidor');
+        }
+
+        return data.candidates[0].content.parts[0].text;
+    }
+}
+
+// Inicializar chat cuando el DOM esté listo
+let chatManager;
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+        chatManager = new ChatManager();
+    });
+} else {
+    chatManager = new ChatManager();
+}
+
 </script>
 
 </body>
