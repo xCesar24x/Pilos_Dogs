@@ -572,15 +572,7 @@
             }
             
             .nav-drawer {
-                position: static !important;
-                width: 100%;
-                max-width: none;
-                height: auto;
-                background: none;
-                backdrop-filter: none;
-                border: none;
-                z-index: 1;
-                transform: translateX(0) !important;
+                display: none !important;
             }
             
             .drawer-header {
@@ -596,8 +588,50 @@
             }
             
             .container {
-                max-width: 1200px;
+                max-width: 768px; /* keep it centered for tablets */
             }
+        }
+
+        /* ─── VERSIÓN DE ESCRITORIO (992px+) ─── */
+        @media (min-width: 992px) {
+            .container {
+                display: grid;
+                max-width: 1200px;
+                grid-template-columns: 350px 1fr;
+                grid-template-rows: auto auto auto 1fr auto;
+                column-gap: 60px;
+                row-gap: 20px;
+                padding: 60px 40px;
+                align-items: start;
+            }
+
+            /* Columna Izquierda (Perfil / Branding) */
+            .logo-wrapper { grid-column: 1; grid-row: 1; justify-self: center; width: 220px; height: 220px; margin-bottom: 0; }
+            .brand-name { grid-column: 1; grid-row: 2; font-size: 4rem; justify-self: center; margin-top: -10px; }
+            .status-badge { grid-column: 1; grid-row: 3; justify-self: center; }
+            .footer { grid-column: 1; grid-row: 4; align-self: end; width: 100%; margin-top: 20px; }
+            .copyright { grid-column: 1; grid-row: 5; justify-self: center; }
+
+            /* Columna Derecha (Contenido Dinámico) */
+            .slider-wrapper { grid-column: 2; grid-row: 1 / 4; width: 100%; height: 100%; display: flex; animation: fadeLeft 0.8s ease both; }
+            .slider-container { height: 100%; min-height: 400px; width: 100%; }
+            
+            .links-container { 
+                grid-column: 2; 
+                grid-row: 4 / 6; 
+                display: grid; 
+                grid-template-columns: 1fr 1fr; 
+                gap: 20px; 
+            }
+            
+            .link-card { height: 100%; }
+            
+            body { align-items: center; }
+        }
+
+        @keyframes fadeLeft {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
         }
 
         /* ─── LOADER SCREEN ─── */
