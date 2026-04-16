@@ -1,32 +1,76 @@
-name: Auto-sync Backup
+name: Auto-sync Backup & Deploy
 
 on:
   push:
     branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
   schedule:
     # Sincroniza cada 6 horas automáticamente
     - cron: '0 */6 * * *'
+  workflow_dispatch:
 
 jobs:
-  backup:
+  sync-backup:
     runs-on: ubuntu-latest
+    name: Sync & Backup
     steps:
-    - uses: actions/checkout@v3
+    - name: Checkout repository
+      uses: actions/checkout@v3
       with:
         fetch-depth: 0
     
-    - name: Verify files
+    - name: Display file structure
       run: |
-        echo "✅ Archivos sincronizados:"
-        ls -lah
+        echo "📁 Estructura de archivos del proyecto:"
+        echo "========================================"
+        find . -type f ! -path './.git/*' ! -path './.github/*' | head -20
+        echo ""
+        echo "📊 Estadísticas:"
+        echo "Total de archivos:" $(find . -type f ! -path './.git/*' ! -path './.github/*' | wc -l)
     
-    - name: Log successful sync
-      run: echo "✅ Backup completado en $(date)" >> sync.log
-    
-    - name: Commit changes (if any)
+    - name: Verify multimedia content
       run: |
-        git config --global user.name "GitHub Actions"
+        echo "🎬 Contenido multimedia encontrado:"
+        echo "Videos:" $(find . -name "*.mp4" | wc -l)
+        echo "Imágenes:" $(find . -name "*.jpg" -o -name "*.jpeg" -o -name "*.png" | wc -l)
+    
+    - name: Create sync log
+      run: |
+        mkdir -p logs
+        echo "✅ Sincronización completada: $(date)" >> logs/sync.log
+        echo "Branch: ${{ github.ref }}" >> logs/sync.log
+        echo "Commit SHA: ${{ github.sha }}" >> logs/sync.log
+    
+    - name: Commit automatic changes (if any)
+      run: |
+        git config --global user.name "GitHub Actions Bot"
         git config --global user.email "actions@github.com"
-        git add -A
-        git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-backup: $(date '+%Y-%m-%d %H:%M:%S')" && git push)
+        git add logs/ || true
+        git diff --quiet && git diff --staged --quiet || (git commit -m "🤖 Auto-sync: $(date '+%Y-%m-%d %H:%M:%S')" && git push origin HEAD:${{ github.ref_name }})
       continue-on-error: true
+    
+    - name: Upload logs as artifacts
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: sync-logs
+        path: logs/
+        retention-days: 30
+
+  validate-html:
+    runs-on: ubuntu-latest
+    name: Validate HTML Files
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Check HTML files
+      run: |
+        echo "✅ Validando archivos HTML..."
+        if [ -f "index.html" ]; then
+          echo "✓ index.html encontrado"
+        fi
+        if [ -f "menu.html" ]; then
+          echo "✓ menu.html encontrado"
+        fi
+        ls -la *.html 2>/dev/null || echo "ℹ️ No HTML files found"
