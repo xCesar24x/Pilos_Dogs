@@ -8,10 +8,10 @@ param(
 )
 
 # Colores para output
-function Write-Success { Write-Host "✅ $args" -ForegroundColor Green }
-function Write-Error-Custom { Write-Host "❌ $args" -ForegroundColor Red }
-function Write-Info { Write-Host "ℹ️  $args" -ForegroundColor Cyan }
-function Write-Warning-Custom { Write-Host "⚠️  $args" -ForegroundColor Yellow }
+function Write-Success { Write-Host "[OK] $args" -ForegroundColor Green }
+function Write-Error-Custom { Write-Host "[ERROR] $args" -ForegroundColor Red }
+function Write-Info { Write-Host "[INFO] $args" -ForegroundColor Cyan }
+function Write-Warning-Custom { Write-Host "[WARN] $args" -ForegroundColor Yellow }
 
 # Mostrar ayuda
 if ($Help) {
@@ -33,7 +33,7 @@ Ejemplos:
     exit 0
 }
 
-Write-Host "🐕 Pilos Dogs - Auto-sync Script" -ForegroundColor Magenta
+Write-Host "[Sync] Pilos Dogs - Auto-sync Script" -ForegroundColor Magenta
 Write-Host "=================================" -ForegroundColor Magenta
 Write-Info ""
 
@@ -81,7 +81,7 @@ if ($LASTEXITCODE -eq 0) {
 }
 
 Write-Host ""
-Write-Info "Próximas acciones:"
-Write-Host "  • Los cambios se sincronizarán automáticamente cada 6 horas"
-Write-Host "  • GitHub Actions ejecutará validaciones automáticas"
-Write-Host "  • Los logs están disponibles en: https://github.com/xCesar24x/Pilosmenu/actions"
+Write-Info "Proximas acciones:"
+Write-Host "  * Los cambios se sincronizaran automaticamente cada 6 horas"
+Write-Host "  * GitHub Actions ejecutara validaciones automaticas"
+Write-Host "  * Los logs estan disponibles en: https://github.com/xCesar24x/Pilos_Dogs/actions"
