@@ -1,44 +1,55 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pilo's Dogs | Hub Oficial Premium</title>
     <meta name="view-transition" content="same-origin">
-    
+
     <!-- FUENTES DE ALTA GAMA -->
-    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Bebas+Neue&family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bangers&family=Bebas+Neue&family=Montserrat:wght@400;700;900&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    
+
     <style>
         /* ─── VARIABLES DE DISEÑO ─── */
         :root {
-            --rojo:     #ff2200;
-            --naranja:  #ff7700;
-            --mostaza:  #fdb913;
-            --negro:    #080808;
-            --carbon:   #141414;
-            --humo:     #1e1e1e;
+            --rojo: #ff2200;
+            --naranja: #ff7700;
+            --mostaza: #fdb913;
+            --negro: #080808;
+            --carbon: #141414;
+            --humo: #1e1e1e;
             --verde-wa: #25d366;
-            --azul-fb:  #1877f2;
-            --blanco:   #f5f0e8;
+            --azul-fb: #1877f2;
+            --blanco: #f5f0e8;
             --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         /* ─── RESET GENERAL ─── */
-        *, *::before, *::after { 
-            box-sizing: border-box; 
-            margin: 0; 
-            padding: 0; 
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
             -webkit-tap-highlight-color: transparent;
         }
 
         /* ─── SCROLLBAR PERSONALIZADO ─── */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--negro); }
-        ::-webkit-scrollbar-thumb { 
-            background: linear-gradient(var(--rojo), var(--mostaza)); 
-            border-radius: 10px; 
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--negro);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(var(--rojo), var(--mostaza));
+            border-radius: 10px;
         }
 
         body {
@@ -55,9 +66,9 @@
         /* ─── CANVAS PARTÍCULAS (EFECTO BRASAS POTENCIADO 3X) ─── */
         #particles-canvas {
             position: fixed;
-            top: 0; 
+            top: 0;
             left: 0;
-            width: 100%; 
+            width: 100%;
             height: 100%;
             pointer-events: none;
             z-index: 0;
@@ -69,9 +80,9 @@
             position: fixed;
             inset: 0;
             background:
-                radial-gradient(ellipse 80% 50% at 50% -10%, rgba(255,42,0,0.3) 0%, transparent 70%),
-                radial-gradient(ellipse 60% 40% at 80% 90%, rgba(255,140,0,0.15) 0%, transparent 60%),
-                radial-gradient(circle at 20% 80%, rgba(253,185,19,0.05) 0%, transparent 50%);
+                radial-gradient(ellipse 80% 50% at 50% -10%, rgba(255, 42, 0, 0.3) 0%, transparent 70%),
+                radial-gradient(ellipse 60% 40% at 80% 90%, rgba(255, 140, 0, 0.15) 0%, transparent 60%),
+                radial-gradient(circle at 20% 80%, rgba(253, 185, 19, 0.05) 0%, transparent 50%);
             z-index: 0;
             pointer-events: none;
         }
@@ -94,8 +105,8 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            background: rgba(0,0,0,0.5);
-            border: 1px solid rgba(255,255,255,0.15);
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.15);
             color: var(--blanco);
             font-size: 0.75rem;
             font-weight: 800;
@@ -104,16 +115,16 @@
             padding: 10px 20px;
             border-radius: 100px;
             backdrop-filter: blur(12px);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
             animation: fadeDown 0.8s ease both;
         }
 
         .status-dot {
-            width: 10px; 
+            width: 10px;
             height: 10px;
             border-radius: 50%;
             background: #aaa;
-            box-shadow: 0 0 10px rgba(255,255,255,0.2);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
             position: relative;
         }
 
@@ -128,8 +139,15 @@
         }
 
         @keyframes pulse-ring {
-            0% { transform: scale(0.5); opacity: 0.8; }
-            100% { transform: scale(1.5); opacity: 0; }
+            0% {
+                transform: scale(0.5);
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
         }
 
         .logo-wrapper {
@@ -143,11 +161,11 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            box-shadow: 0 0 40px rgba(253,185,19,0.4), inset 0 0 20px rgba(0,0,0,0.1);
+            box-shadow: 0 0 40px rgba(253, 185, 19, 0.4), inset 0 0 20px rgba(0, 0, 0, 0.1);
         }
 
         .logo-wrapper img {
-            width: 140%; 
+            width: 140%;
             height: auto;
             transform: translateY(2px);
             user-select: none;
@@ -161,7 +179,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-top: -20px;
-            filter: drop-shadow(0 4px 15px rgba(255,42,0,0.4));
+            filter: drop-shadow(0 4px 15px rgba(255, 42, 0, 0.4));
             line-height: 1;
             text-align: center;
         }
@@ -178,8 +196,8 @@
             height: 400px;
             border-radius: 28px;
             overflow: hidden;
-            border: 2px solid rgba(253,185,19,0.3);
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.6);
+            border: 2px solid rgba(253, 185, 19, 0.3);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
             background: #000;
         }
 
@@ -191,12 +209,13 @@
             transform: scale(1.05);
         }
 
-        .slide.active { 
-            opacity: 1; 
+        .slide.active {
+            opacity: 1;
             transform: scale(1);
         }
 
-        .slide img, .slide video {
+        .slide img,
+        .slide video {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -207,21 +226,21 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 40%, transparent 70%, rgba(0,0,0,0.4) 100%);
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 40%, transparent 70%, rgba(0, 0, 0, 0.4) 100%);
             pointer-events: none;
             z-index: 2;
         }
 
         .slide-label {
             position: absolute;
-            bottom: 20px; 
+            bottom: 20px;
             left: 20px;
             z-index: 5;
             font-family: 'Bebas Neue', cursive;
             font-size: 1.8rem;
             letter-spacing: 2px;
             color: white;
-            text-shadow: 0 3px 15px rgba(0,0,0,1);
+            text-shadow: 0 3px 15px rgba(0, 0, 0, 1);
             opacity: 0;
             transform: translateY(10px);
             transition: all 0.5s 0.3s ease;
@@ -235,26 +254,35 @@
         /* CONTROLES */
         .slider-btn {
             position: absolute;
-            top: 50%; 
+            top: 50%;
             transform: translateY(-50%);
-            z-index: 10; 
-            width: 45px; 
+            z-index: 10;
+            width: 45px;
             height: 45px;
-            border-radius: 50%; 
-            background: rgba(0,0,0,0.5);
-            border: 1px solid rgba(255,255,255,0.2);
-            color: white; 
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
             cursor: pointer;
-            display: flex; 
-            align-items: center; 
+            display: flex;
+            align-items: center;
             justify-content: center;
-            opacity: 0; 
+            opacity: 0;
             transition: 0.3s;
             backdrop-filter: blur(5px);
         }
 
-        .slider-container:hover .slider-btn { opacity: 1; }
-        .btn-prev { left: 15px; } .btn-next { right: 15px; }
+        .slider-container:hover .slider-btn {
+            opacity: 1;
+        }
+
+        .btn-prev {
+            left: 15px;
+        }
+
+        .btn-next {
+            right: 15px;
+        }
 
         /* BARRA DE PROGRESO SLIDER */
         .slider-progress-container {
@@ -263,7 +291,7 @@
             left: 0;
             width: 100%;
             height: 6px;
-            background: rgba(255,255,255,0.1);
+            background: rgba(255, 255, 255, 0.1);
             z-index: 10;
         }
 
@@ -292,10 +320,10 @@
             align-items: center;
             justify-content: space-between;
             transition: var(--transition);
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             overflow: hidden;
             color: white;
-            background: rgba(255,255,255,0.03);
+            background: rgba(255, 255, 255, 0.03);
         }
 
         /* Capa de luz que seguirá el mouse */
@@ -307,19 +335,19 @@
             transform: translate(-50%, -50%);
             width: 200px;
             height: 200px;
-            background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
             opacity: 0;
             transition: opacity 0.3s ease;
             pointer-events: none;
             z-index: 0;
         }
 
-        .link-card:hover::after { 
-            opacity: 1; 
+        .link-card:hover::after {
+            opacity: 1;
         }
 
         /* Asegura que el contenido del botón quede sobre la luz */
-        .link-card > * {
+        .link-card>* {
             position: relative;
             z-index: 1;
         }
@@ -328,48 +356,89 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(90deg, rgba(255,255,255,0.1), transparent);
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0.1), transparent);
             opacity: 0;
             transition: 0.3s;
         }
 
-        .link-card:hover { 
-            transform: translateY(-5px) scale(1.02); 
-            border-color: rgba(255,255,255,0.3);
+        .link-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            border-color: rgba(255, 255, 255, 0.3);
         }
 
-        .link-card:hover::before { opacity: 1; }
+        .link-card:hover::before {
+            opacity: 1;
+        }
 
-        .card-left { display: flex; align-items: center; gap: 18px; }
+        .card-left {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
 
         .card-icon {
-            width: 48px; 
-            height: 48px; 
+            width: 48px;
+            height: 48px;
             border-radius: 14px;
-            background: rgba(0,0,0,0.4); 
+            background: rgba(0, 0, 0, 0.4);
             display: flex;
-            align-items: center; 
-            justify-content: center; 
+            align-items: center;
+            justify-content: center;
             font-size: 1.6rem;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
         }
 
-        .card-text { display: flex; flex-direction: column; text-align: left; }
-        .card-title { font-size: 1.1rem; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; }
-        .card-sub { font-size: 0.75rem; opacity: 0.7; font-weight: 400; margin-top: 2px; }
+        .card-text {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .card-sub {
+            font-size: 0.75rem;
+            opacity: 0.7;
+            font-weight: 400;
+            margin-top: 2px;
+        }
 
         /* COLORES ESPECÍFICOS */
-        .whatsapp { background: linear-gradient(135deg, #075E54, #128C7E, #25D366); box-shadow: 0 10px 25px rgba(37,211,102,0.3); }
-        .menu-btn { background: linear-gradient(135deg, #a0720a, #c98a00, #fdb913); color: #000; box-shadow: 0 10px 25px rgba(253,185,19,0.3); }
-        .menu-btn .card-sub { color: rgba(0,0,0,0.6); }
-        .instagram { background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045); box-shadow: 0 10px 25px rgba(220,39,67,0.3); }
-        .facebook { background: linear-gradient(135deg, #0062E0, #1877f2); box-shadow: 0 10px 25px rgba(24,119,242,0.3); }
+        .whatsapp {
+            background: linear-gradient(135deg, #075E54, #128C7E, #25D366);
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.3);
+        }
+
+        .menu-btn {
+            background: linear-gradient(135deg, #a0720a, #c98a00, #fdb913);
+            color: #000;
+            box-shadow: 0 10px 25px rgba(253, 185, 19, 0.3);
+        }
+
+        .menu-btn .card-sub {
+            color: rgba(0, 0, 0, 0.6);
+        }
+
+        .instagram {
+            background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+            box-shadow: 0 10px 25px rgba(220, 39, 67, 0.3);
+        }
+
+        .facebook {
+            background: linear-gradient(135deg, #0062E0, #1877f2);
+            box-shadow: 0 10px 25px rgba(24, 119, 242, 0.3);
+        }
 
         /* ─── FOOTER (HORARIO Y UBICACIÓN CENTRADA) ─── */
         .footer {
             width: 100%;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 30px;
             padding: 25px;
             backdrop-filter: blur(15px);
@@ -381,14 +450,14 @@
             opacity: 0.8;
         }
 
-        .footer-location { 
-            font-family: 'Bebas Neue', cursive; 
-            font-size: 1.4rem; 
-            color: var(--mostaza); 
+        .footer-location {
+            font-family: 'Bebas Neue', cursive;
+            font-size: 1.4rem;
+            color: var(--mostaza);
             letter-spacing: 2px;
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
             gap: 10px;
             margin-bottom: 5px;
         }
@@ -400,22 +469,32 @@
             max-width: 80%;
         }
 
-        .schedule-grid { 
-            display: grid; 
-            grid-template-columns: 1fr 1fr; 
-            gap: 15px; 
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
             width: 100%;
         }
 
-        .sched-item { 
-            background: rgba(0,0,0,0.3); 
-            padding: 12px; 
-            border-radius: 15px; 
-            border: 1px solid rgba(255,255,255,0.05);
+        .sched-item {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 12px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .sched-day { font-size: 0.7rem; font-weight: 900; color: var(--mostaza); text-transform: uppercase; margin-bottom: 5px; }
-        .sched-hour { font-size: 0.8rem; font-weight: 700; }
+        .sched-day {
+            font-size: 0.7rem;
+            font-weight: 900;
+            color: var(--mostaza);
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .sched-hour {
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
 
         /* ─── COPYRIGHT ─── */
         .copyright {
@@ -467,7 +546,7 @@
             display: none;
             position: fixed;
             inset: 0;
-            background: rgba(0,0,0,0.7);
+            background: rgba(0, 0, 0, 0.7);
             z-index: 90;
             animation: fadeIn 0.3s ease;
         }
@@ -486,7 +565,7 @@
             max-width: 350px;
             background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
             backdrop-filter: blur(10px);
-            border-right: 1px solid rgba(255,255,255,0.1);
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
             z-index: 95;
             transform: translateX(-100%);
             transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -504,10 +583,10 @@
             align-items: center;
             justify-content: space-between;
             padding: 20px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             position: sticky;
             top: 0;
-            background: rgba(0,0,0,0.5);
+            background: rgba(0, 0, 0, 0.5);
         }
 
         .drawer-title {
@@ -542,8 +621,13 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
         /* ─── RESPONSIVO ─── */
@@ -551,12 +635,12 @@
             .menu-toggle {
                 display: flex;
             }
-            
+
             .container {
                 max-width: 100%;
                 padding: 80px 20px 60px;
             }
-            
+
             .links-container {
                 display: none;
             }
@@ -566,29 +650,30 @@
             .menu-toggle {
                 display: none;
             }
-            
+
             .menu-overlay {
                 display: none !important;
             }
-            
+
             .nav-drawer {
                 display: none !important;
             }
-            
+
             .drawer-header {
                 display: none;
             }
-            
+
             .drawer-nav {
                 display: none;
             }
-            
+
             .links-container {
                 display: flex;
             }
-            
+
             .container {
-                max-width: 768px; /* keep it centered for tablets */
+                max-width: 768px;
+                /* keep it centered for tablets */
             }
         }
 
@@ -606,77 +691,177 @@
             }
 
             /* Columna Izquierda (Perfil / Branding) */
-            .logo-wrapper { grid-column: 1; grid-row: 1; justify-self: center; width: 220px; height: 220px; margin-bottom: 0; }
-            .brand-name { grid-column: 1; grid-row: 2; font-size: 4rem; justify-self: center; margin-top: -10px; }
-            .status-badge { grid-column: 1; grid-row: 3; justify-self: center; }
-            .footer { grid-column: 1; grid-row: 4; align-self: end; width: 100%; margin-top: 20px; }
-            .copyright { grid-column: 1; grid-row: 5; justify-self: center; }
+            .logo-wrapper {
+                grid-column: 1;
+                grid-row: 1;
+                justify-self: center;
+                width: 220px;
+                height: 220px;
+                margin-bottom: 0;
+            }
+
+            .brand-name {
+                grid-column: 1;
+                grid-row: 2;
+                font-size: 4rem;
+                justify-self: center;
+                margin-top: -10px;
+            }
+
+            .status-badge {
+                grid-column: 1;
+                grid-row: 3;
+                justify-self: center;
+            }
+
+            .footer {
+                grid-column: 1;
+                grid-row: 4;
+                align-self: end;
+                width: 100%;
+                margin-top: 20px;
+            }
+
+            .copyright {
+                grid-column: 1;
+                grid-row: 5;
+                justify-self: center;
+            }
 
             /* Columna Derecha (Contenido Dinámico) */
-            .slider-wrapper { grid-column: 2; grid-row: 1 / 4; width: 100%; height: 100%; display: flex; animation: fadeLeft 0.8s ease both; }
-            .slider-container { height: 100%; min-height: 400px; width: 100%; }
-            
-            .links-container { 
-                grid-column: 2; 
-                grid-row: 4 / 6; 
-                display: grid; 
-                grid-template-columns: 1fr 1fr; 
-                gap: 20px; 
+            .slider-wrapper {
+                grid-column: 2;
+                grid-row: 1 / 4;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                animation: fadeLeft 0.8s ease both;
             }
-            
-            .link-card { height: 100%; }
-            
-            body { align-items: center; }
+
+            .slider-container {
+                height: 100%;
+                min-height: 400px;
+                width: 100%;
+            }
+
+            .links-container {
+                grid-column: 2;
+                grid-row: 4 / 6;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+            }
+
+            .link-card {
+                height: 100%;
+            }
+
+            body {
+                align-items: center;
+            }
         }
 
         @keyframes fadeLeft {
-            from { opacity: 0; transform: translateX(30px); }
-            to { opacity: 1; transform: translateX(0); }
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
         /* ─── LOADER SCREEN ─── */
         #loader {
-            position: fixed; inset: 0; background: var(--negro); z-index: 9999;
-            display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 25px;
-        }
-        
-        #loader.hidden { 
-            opacity: 0; 
-            visibility: hidden; 
-            transition: 0.8s cubic-bezier(0.65, 0, 0.35, 1); 
-        }
-
-        .loader-logo { 
-            font-family: 'Bangers', cursive; 
-            font-size: 4rem; 
-            background: linear-gradient(var(--mostaza), var(--rojo)); 
-            -webkit-background-clip: text; 
-            -webkit-text-fill-color: transparent; 
-            filter: drop-shadow(0 0 25px rgba(255,42,0,0.5)); 
+            position: fixed;
+            inset: 0;
+            background: var(--negro);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 25px;
         }
 
-        .loader-bar-wrap { width: 200px; height: 4px; background: rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden; }
-        
-        .loader-bar { 
-            height: 100%; 
-            background: linear-gradient(90deg, var(--rojo), var(--mostaza)); 
-            width: 0%; 
-            animation: loadBar 1.5s forwards cubic-bezier(0.65, 0, 0.35, 1); 
+        #loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+            transition: 0.8s cubic-bezier(0.65, 0, 0.35, 1);
         }
 
-        @keyframes loadBar { to { width: 100%; } }
+        .loader-logo {
+            font-family: 'Bangers', cursive;
+            font-size: 4rem;
+            background: linear-gradient(var(--mostaza), var(--rojo));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 25px rgba(255, 42, 0, 0.5));
+        }
+
+        .loader-bar-wrap {
+            width: 200px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .loader-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--rojo), var(--mostaza));
+            width: 0%;
+            animation: loadBar 1.5s forwards cubic-bezier(0.65, 0, 0.35, 1);
+        }
+
+        @keyframes loadBar {
+            to {
+                width: 100%;
+            }
+        }
 
         /* ─── ANIMACIONES DE ENTRADA ─── */
-        @keyframes fadeDown { from { opacity:0; transform: translateY(-30px); } to { opacity:1; transform: translateY(0); } }
-        @keyframes fadeUp { from { opacity:0; transform: translateY(40px); } to { opacity:1; transform: translateY(0); } }
+        @keyframes fadeDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
         /* ─── CUSTOM CURSOR ─── */
         @media (pointer: fine) {
-            body, .link-card, .slider-btn, a { cursor: none !important; }
 
-            .cursor-dot, .cursor-glow {
+            body,
+            .link-card,
+            .slider-btn,
+            a {
+                cursor: none !important;
+            }
+
+            .cursor-dot,
+            .cursor-glow {
                 position: fixed;
-                top: 0; left: 0;
+                top: 0;
+                left: 0;
                 pointer-events: none;
                 z-index: 999999;
                 transform: translate(-50%, -50%);
@@ -694,7 +879,7 @@
             .cursor-glow {
                 width: 40px;
                 height: 40px;
-                background: radial-gradient(circle, rgba(253,185,19,0.4) 0%, transparent 70%);
+                background: radial-gradient(circle, rgba(253, 185, 19, 0.4) 0%, transparent 70%);
                 transition: transform 0.3s ease, background 0.3s ease, width 0.3s ease, height 0.3s ease;
             }
 
@@ -708,7 +893,7 @@
             .cursor-glow.hovered {
                 width: 80px;
                 height: 80px;
-                background: radial-gradient(circle, rgba(255,34,0,0.5) 0%, transparent 70%);
+                background: radial-gradient(circle, rgba(255, 34, 0, 0.5) 0%, transparent 70%);
             }
         }
 
@@ -737,8 +922,15 @@
         }
 
         @keyframes slideUp {
-            from { opacity: 0; transform: translateY(30px) scale(0.9); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
         }
 
         .chat-header {
@@ -855,12 +1047,27 @@
             animation: typing 1.4s infinite;
         }
 
-        .chat-dot:nth-child(2) { animation-delay: 0.2s; }
-        .chat-dot:nth-child(3) { animation-delay: 0.4s; }
+        .chat-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .chat-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
 
         @keyframes typing {
-            0%, 60%, 100% { transform: translateY(0); opacity: 0.6; }
-            30% { transform: translateY(-8px); opacity: 1; }
+
+            0%,
+            60%,
+            100% {
+                transform: translateY(0);
+                opacity: 0.6;
+            }
+
+            30% {
+                transform: translateY(-8px);
+                opacity: 1;
+            }
         }
 
         .chat-input-area {
@@ -947,8 +1154,15 @@
         }
 
         @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
         }
 
         .chat-float-btn.hidden {
@@ -970,501 +1184,491 @@
         }
     </style>
 </head>
+
 <body>
 
-<!-- Custom Cursor Elements -->
-<div class="cursor-dot" id="cursor-dot"></div>
-<div class="cursor-glow" id="cursor-glow"></div>
+    <!-- Custom Cursor Elements -->
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="cursor-glow" id="cursor-glow"></div>
 
-<!-- Pantalla de Carga -->
-<div id="loader">
-    <div class="loader-logo">Pilo's Dogs</div>
-    <div class="loader-bar-wrap"><div class="loader-bar"></div></div>
-    <div style="font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; opacity: 0.4;">Preparando el sabor...</div>
-</div>
-
-<!-- Canvas de Brasas (Optimizado 180 Partículas) -->
-<canvas id="particles-canvas"></canvas>
-
-<!-- OVERLAY DEL MENÚ HAMBURGUESA -->
-<div id="menu-overlay" class="menu-overlay"></div>
-
-<!-- MENÚ HAMBURGUESA (DRAWER) -->
-<div id="nav-drawer" class="nav-drawer">
-    <div class="drawer-header">
-        <button id="close-menu" class="close-btn" aria-label="Cerrar menú">
-            <i class="fas fa-times"></i>
-        </button>
-        <span class="drawer-title">PILO'S DOGS</span>
-    </div>
-    <nav class="drawer-nav" id="drawer-nav"></nav>
-</div>
-
-<!-- BOTÓN HAMBURGUESA -->
-<button id="menu-toggle" class="menu-toggle" aria-label="Abrir menú">
-    <span></span>
-    <span></span>
-    <span></span>
-</button>
-
-<!-- CHAT FLOAT BUTTON -->
-<button id="chat-float-btn" class="chat-float-btn" aria-label="Abrir chat" title="Pregunta sobre nuestro menú">
-    <i class="fas fa-comments"></i>
-</button>
-
-<!-- CHAT WIDGET -->
-<div id="chat-widget" class="chat-widget hidden">
-    <div class="chat-header">
-        <h3>🌭 Pilo's Bot</h3>
-        <button id="chat-close-btn" class="chat-close-btn" aria-label="Cerrar chat">
-            <i class="fas fa-times"></i>
-        </button>
-    </div>
-    <div id="chat-messages" class="chat-messages"></div>
-    <div class="chat-input-area">
-        <input type="text" id="chat-input" class="chat-input" placeholder="Pregunta sobre ingredientes o precios..." />
-        <button id="chat-send-btn" class="chat-send-btn" aria-label="Enviar mensaje">
-            <i class="fas fa-paper-plane"></i>
-        </button>
-    </div>
-</div>
-
-<div class="container">
-
-    <!-- Badge de Estado Horario -->
-    <div class="status-badge">
-        <span class="status-dot" id="status-dot"></span>
-        <span id="status-text">Calculando...</span>
+    <!-- Pantalla de Carga -->
+    <div id="loader">
+        <div class="loader-logo">Pilo's Dogs</div>
+        <div class="loader-bar-wrap">
+            <div class="loader-bar"></div>
+        </div>
+        <div style="font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; opacity: 0.4;">Preparando el
+            sabor...</div>
     </div>
 
-    <!-- Cabecera -->
-    <div class="logo-wrapper">
-        <img src="logo.jpeg" alt="Pilo's Dogs Official">
+    <!-- Canvas de Brasas (Optimizado 180 Partículas) -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- OVERLAY DEL MENÚ HAMBURGUESA -->
+    <div id="menu-overlay" class="menu-overlay"></div>
+
+    <!-- MENÚ HAMBURGUESA (DRAWER) -->
+    <div id="nav-drawer" class="nav-drawer">
+        <div class="drawer-header">
+            <button id="close-menu" class="close-btn" aria-label="Cerrar menú">
+                <i class="fas fa-times"></i>
+            </button>
+            <span class="drawer-title">PILO'S DOGS</span>
+        </div>
+        <nav class="drawer-nav" id="drawer-nav"></nav>
     </div>
-    <div class="brand-name">Pilo's Dogs</div>
 
-    <!-- Slider Multimedia -->
-    <div class="slider-wrapper">
-        <div class="slider-container" id="slider">
-            
-            <div class="slide active">
-                <video src="proceso.mp4" autoplay muted loop playsinline poster="logo.jpeg"></video>
-                <span class="slide-label">🔥 El Arte de Pilos</span>
-            </div>
-            
-            <div class="slide">
-                <video src="bomba.mp4" autoplay muted loop playsinline poster="logo.jpeg"></video>
-                <span class="slide-label">💥 El Perro Bomba</span>
-            </div>
-            
-            <div class="slide">
-                <video src="chalupa.mp4" autoplay muted loop playsinline poster="logo.jpeg"></video>
-                <span class="slide-label">🌯 Chalupa Especial</span>
-            </div>
-            
-            <div class="slide">
-                <img src="3quesos.jpeg" alt="Especial 3 Quesos">
-                <span class="slide-label">🧀 Triple Queso</span>
-            </div>
-            
-            <div class="slide">
-                <video src="tresquesostocineta.mp4" autoplay muted loop playsinline poster="logo.jpeg"></video>
-                <span class="slide-label">🥓 Queso & Tocineta</span>
-            </div>
+    <!-- BOTÓN HAMBURGUESA -->
+    <button id="menu-toggle" class="menu-toggle" aria-label="Abrir menú">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
 
-            <!-- Controles Manuales -->
-            <button class="slider-btn btn-prev" aria-label="Anterior" onclick="changeSlide(-1)"><i class="fas fa-chevron-left"></i></button>
-            <button class="slider-btn btn-next" aria-label="Siguiente" onclick="changeSlide(1)"><i class="fas fa-chevron-right"></i></button>
-            
-            <!-- Barra de Progreso Sincronizada -->
-            <div class="slider-progress-container">
-                <div class="slider-progress-bar" id="progress-bar"></div>
-            </div>
+    <!-- CHAT FLOAT BUTTON -->
+    <button id="chat-float-btn" class="chat-float-btn" aria-label="Abrir chat" title="Pregunta sobre nuestro menú">
+        <i class="fas fa-comments"></i>
+    </button>
+
+    <!-- CHAT WIDGET -->
+    <div id="chat-widget" class="chat-widget hidden">
+        <div class="chat-header">
+            <h3>🌭 Pilo's Bot</h3>
+            <button id="chat-close-btn" class="chat-close-btn" aria-label="Cerrar chat">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div id="chat-messages" class="chat-messages"></div>
+        <div class="chat-input-area">
+            <input type="text" id="chat-input" class="chat-input"
+                placeholder="Pregunta sobre ingredientes o precios..." />
+            <button id="chat-send-btn" class="chat-send-btn" aria-label="Enviar mensaje">
+                <i class="fas fa-paper-plane"></i>
+            </button>
         </div>
     </div>
 
-    <!-- Botonera HUB -->
-    <div class="links-container">
-        
-        <a href="https://wa.me/50689179971" class="link-card whatsapp">
-            <div class="card-left">
-                <div class="card-icon"><i class="fab fa-whatsapp"></i></div>
-                <div class="card-text">
-                    <span class="card-title">¡Pedir por WhatsApp!</span>
-                    <span class="card-sub">Respuesta inmediata</span>
-                </div>
-            </div>
-            <i class="fas fa-chevron-right" style="opacity: 0.4;"></i>
-        </a>
+    <div class="container">
 
-        <a href="menu.html" class="link-card menu-btn">
-            <div class="card-left">
-                <div class="card-icon"><i class="fas fa-utensils"></i></div>
-                <div class="card-text">
-                    <span class="card-title">Ver Menú Pilos</span>
-                    <span class="card-sub">Nuestros clásicos y combos</span>
-                </div>
-            </div>
-            <i class="fas fa-chevron-right" style="opacity: 0.4;"></i>
-        </a>
+        <!-- Badge de Estado Horario -->
+        <div class="status-badge">
+            <span class="status-dot" id="status-dot"></span>
+            <span id="status-text">Calculando...</span>
+        </div>
 
-        <a href="https://www.instagram.com/pilos_dogss" class="link-card instagram" target="_blank">
-            <div class="card-left">
-                <div class="card-icon"><i class="fab fa-instagram"></i></div>
-                <div class="card-text">
-                    <span class="card-title">Instagram</span>
-                    <span class="card-sub">Videos y fotos diarias</span>
-                </div>
-            </div>
-            <i class="fas fa-chevron-right" style="opacity: 0.4;"></i>
-        </a>
+        <!-- Cabecera -->
+        <div class="logo-wrapper">
+            <img src="logo.jpeg" alt="Pilo's Dogs Official">
+        </div>
+        <div class="brand-name">Pilo's Dogs</div>
 
-        <a href="https://www.facebook.com/profile.php?id=61554146761013" class="link-card facebook" target="_blank">
-            <div class="card-left">
-                <div class="card-icon"><i class="fab fa-facebook"></i></div>
-                <div class="card-text">
-                    <span class="card-title">Facebook</span>
-                    <span class="card-sub">Unite a la comunidad</span>
+        <!-- Slider Multimedia -->
+        <div class="slider-wrapper">
+            <div class="slider-container" id="slider">
+
+                <div class="slide active">
+                    <video src="proceso.mp4" autoplay muted loop playsinline poster="logo.jpeg"></video>
+                    <span class="slide-label">🔥 El Arte de Pilos</span>
+                </div>
+
+                <div class="slide">
+                    <video src="bomba.mp4" autoplay muted loop playsinline poster="logo.jpeg"></video>
+                    <span class="slide-label">💥 El Perro Bomba</span>
+                </div>
+
+                <div class="slide">
+                    <video src="chalupa.mp4" autoplay muted loop playsinline poster="logo.jpeg"></video>
+                    <span class="slide-label">🌯 Chalupa Especial</span>
+                </div>
+
+                <div class="slide">
+                    <img src="3quesos.jpeg" alt="Especial 3 Quesos">
+                    <span class="slide-label">🧀 Triple Queso</span>
+                </div>
+
+                <div class="slide">
+                    <video src="tresquesostocineta.mp4" autoplay muted loop playsinline poster="logo.jpeg"></video>
+                    <span class="slide-label">🥓 Queso & Tocineta</span>
+                </div>
+
+                <!-- Controles Manuales -->
+                <button class="slider-btn btn-prev" aria-label="Anterior" onclick="changeSlide(-1)"><i
+                        class="fas fa-chevron-left"></i></button>
+                <button class="slider-btn btn-next" aria-label="Siguiente" onclick="changeSlide(1)"><i
+                        class="fas fa-chevron-right"></i></button>
+
+                <!-- Barra de Progreso Sincronizada -->
+                <div class="slider-progress-container">
+                    <div class="slider-progress-bar" id="progress-bar"></div>
                 </div>
             </div>
-            <i class="fas fa-chevron-right" style="opacity: 0.4;"></i>
-        </a>
+        </div>
+
+        <!-- Botonera HUB -->
+        <div class="links-container">
+
+            <a href="https://wa.me/50689179971" class="link-card whatsapp">
+                <div class="card-left">
+                    <div class="card-icon"><i class="fab fa-whatsapp"></i></div>
+                    <div class="card-text">
+                        <span class="card-title">¡Pedir por WhatsApp!</span>
+                        <span class="card-sub">Respuesta inmediata</span>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-right" style="opacity: 0.4;"></i>
+            </a>
+
+            <a href="menu.html" class="link-card menu-btn">
+                <div class="card-left">
+                    <div class="card-icon"><i class="fas fa-utensils"></i></div>
+                    <div class="card-text">
+                        <span class="card-title">Ver Menú Pilos</span>
+                        <span class="card-sub">Nuestros clásicos y combos</span>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-right" style="opacity: 0.4;"></i>
+            </a>
+
+            <a href="https://www.instagram.com/pilos_dogss" class="link-card instagram" target="_blank">
+                <div class="card-left">
+                    <div class="card-icon"><i class="fab fa-instagram"></i></div>
+                    <div class="card-text">
+                        <span class="card-title">Instagram</span>
+                        <span class="card-sub">Videos y fotos diarias</span>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-right" style="opacity: 0.4;"></i>
+            </a>
+
+            <a href="https://www.facebook.com/profile.php?id=61554146761013" class="link-card facebook" target="_blank">
+                <div class="card-left">
+                    <div class="card-icon"><i class="fab fa-facebook"></i></div>
+                    <div class="card-text">
+                        <span class="card-title">Facebook</span>
+                        <span class="card-sub">Unite a la comunidad</span>
+                    </div>
+                </div>
+                <i class="fas fa-chevron-right" style="opacity: 0.4;"></i>
+            </a>
+
+        </div>
+
+        <!-- Información de Contacto (Centrada) -->
+        <div class="footer">
+            <div class="footer-location">
+                <i class="fas fa-map-marker-alt"></i> DESAMPARADOS DE ALAJUELA
+            </div>
+            <div class="footer-address">
+                150m este del Colegio Saint John
+            </div>
+
+            <div class="schedule-grid">
+                <div class="sched-item">
+                    <div class="sched-day">Mié - Sáb</div>
+                    <div class="sched-hour">12 PM - 9 PM</div>
+                </div>
+                <div class="sched-item">
+                    <div class="sched-day">Domingos</div>
+                    <div class="sched-hour">12 PM - 8 PM</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="copyright">
+            © 2026 PILO'S DOGS
+        </div>
 
     </div>
 
-    <!-- Información de Contacto (Centrada) -->
-    <div class="footer">
-        <div class="footer-location">
-            <i class="fas fa-map-marker-alt"></i> DESAMPARADOS DE ALAJUELA
-        </div>
-        <div class="footer-address">
-            150m este del Colegio Saint John
-        </div>
-        
-        <div class="schedule-grid">
-            <div class="sched-item">
-                <div class="sched-day">Mié - Sáb</div>
-                <div class="sched-hour">12 PM - 9 PM</div>
-            </div>
-            <div class="sched-item">
-                <div class="sched-day">Domingos</div>
-                <div class="sched-hour">12 PM - 8 PM</div>
-            </div>
-        </div>
-    </div>
+    <script>
+        /**
+         * SISTEMA DE CARGA (LOADER)
+         */
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const loader = document.getElementById('loader');
+                loader.classList.add('hidden');
+            }, 1500);
+        });
 
-    <div class="copyright">
-        © 2026 PILO'S DOGS
-    </div>
+        /**
+         * SISTEMA DE PARTÍCULAS (EMBER ENGINE 3X)
+         * 180 Partículas con física individual y resplandor
+         */
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+        let W, H, particles = [];
 
-</div>
-
-<script>
-/**
- * SISTEMA DE CARGA (LOADER)
- */
-window.addEventListener('load', () => {
-    setTimeout(() => {
-        const loader = document.getElementById('loader');
-        loader.classList.add('hidden');
-    }, 1500);
-});
-
-/**
- * SISTEMA DE PARTÍCULAS (EMBER ENGINE 3X)
- * 180 Partículas con física individual y resplandor
- */
-const canvas = document.getElementById('particles-canvas');
-const ctx = canvas.getContext('2d');
-let W, H, particles = [];
-
-function initParticles() {
-    W = canvas.width = window.innerWidth;
-    H = canvas.height = window.innerHeight;
-    particles = [];
-    for (let i = 0; i < 180; i++) {
-        particles.push(new Ember());
-    }
-}
-
-class Ember {
-    constructor() {
-        this.reset(true);
-    }
-
-    reset(initial = false) {
-        this.x = Math.random() * W;
-        this.y = initial ? Math.random() * H : H + 30;
-        this.vx = (Math.random() - 0.5) * 1.5;
-        this.vy = -(Math.random() * 2 + 0.8);
-        this.size = Math.random() * 3.5 + 0.5;
-        this.life = Math.random() * 100 + 50;
-        this.maxLife = this.life;
-        this.hue = Math.random() * 35 + 10; // Colores fuego
-    }
-
-    update() {
-        this.x += this.vx;
-        this.y += this.vy;
-        this.life -= 0.6;
-        
-        if (this.y < -50 || this.life <= 0) {
-            this.reset();
+        function initParticles() {
+            W = canvas.width = window.innerWidth;
+            H = canvas.height = window.innerHeight;
+            particles = [];
+            for (let i = 0; i < 180; i++) {
+                particles.push(new Ember());
+            }
         }
-    }
 
-    draw() {
-        const opacity = this.life / this.maxLife;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = `hsla(${this.hue}, 100%, 60%, ${opacity})`;
-        ctx.shadowBlur = 15;
-        ctx.shadowColor = `hsl(${this.hue}, 100%, 50%)`;
-        ctx.fill();
-        ctx.shadowBlur = 0;
-    }
-}
+        class Ember {
+            constructor() {
+                this.reset(true);
+            }
 
-let isVisible = true;
-let animationFrameId;
+            reset(initial = false) {
+                this.x = Math.random() * W;
+                this.y = initial ? Math.random() * H : H + 30;
+                this.vx = (Math.random() - 0.5) * 1.5;
+                this.vy = -(Math.random() * 2 + 0.8);
+                this.size = Math.random() * 3.5 + 0.5;
+                this.life = Math.random() * 100 + 50;
+                this.maxLife = this.life;
+                this.hue = Math.random() * 35 + 10; // Colores fuego
+            }
 
-document.addEventListener('visibilitychange', () => {
-    isVisible = document.visibilityState === 'visible';
-    if (isVisible) {
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                this.life -= 0.6;
+
+                if (this.y < -50 || this.life <= 0) {
+                    this.reset();
+                }
+            }
+
+            draw() {
+                const opacity = this.life / this.maxLife;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = `hsla(${this.hue}, 100%, 60%, ${opacity})`;
+                ctx.shadowBlur = 15;
+                ctx.shadowColor = `hsl(${this.hue}, 100%, 50%)`;
+                ctx.fill();
+                ctx.shadowBlur = 0;
+            }
+        }
+
+        let isVisible = true;
+        let animationFrameId;
+
+        document.addEventListener('visibilitychange', () => {
+            isVisible = document.visibilityState === 'visible';
+            if (isVisible) {
+                animateParticles();
+            } else {
+                cancelAnimationFrame(animationFrameId);
+            }
+        });
+
+        function animateParticles() {
+            if (!isVisible) return;
+
+            ctx.clearRect(0, 0, W, H);
+            for (let p of particles) {
+                p.update();
+                p.draw();
+            }
+            animationFrameId = requestAnimationFrame(animateParticles);
+        }
+
+        window.addEventListener('resize', initParticles);
+        initParticles();
         animateParticles();
-    } else {
-        cancelAnimationFrame(animationFrameId);
-    }
-});
 
-function animateParticles() {
-    if (!isVisible) return;
-    
-    ctx.clearRect(0, 0, W, H);
-    for (let p of particles) {
-        p.update();
-        p.draw();
-    }
-    animationFrameId = requestAnimationFrame(animateParticles);
-}
+        /**
+         * MOTOR DEL SLIDER (PRO SLIDER ENGINE)
+         * Maneja auto-play, gestos swipe y barra de progreso sincronizada
+         */
+        const slides = document.querySelectorAll('.slide');
+        const progressBar = document.getElementById('progress-bar');
+        let currentSlide = 0;
+        let slideInterval;
+        let progressValue = 0;
+        const SLIDE_DURATION = 5000; // 5 segundos
 
-window.addEventListener('resize', initParticles);
-initParticles();
-animateParticles();
+        function updateProgressBar() {
+            progressValue += 20; // Actualiza cada 20ms
+            const percentage = (progressValue / SLIDE_DURATION) * 100;
+            progressBar.style.width = percentage + '%';
 
-/**
- * MOTOR DEL SLIDER (PRO SLIDER ENGINE)
- * Maneja auto-play, gestos swipe y barra de progreso sincronizada
- */
-const slides = document.querySelectorAll('.slide');
-const progressBar = document.getElementById('progress-bar');
-let currentSlide = 0;
-let slideInterval;
-let progressValue = 0;
-const SLIDE_DURATION = 5000; // 5 segundos
+            if (progressValue >= SLIDE_DURATION) {
+                changeSlide(1);
+            }
+        }
 
-function updateProgressBar() {
-    progressValue += 20; // Actualiza cada 20ms
-    const percentage = (progressValue / SLIDE_DURATION) * 100;
-    progressBar.style.width = percentage + '%';
-    
-    if (progressValue >= SLIDE_DURATION) {
-        changeSlide(1);
-    }
-}
+        let progressInterval = setInterval(updateProgressBar, 20);
 
-let progressInterval = setInterval(updateProgressBar, 20);
+        function changeSlide(direction) {
+            // Resetear slide actual
+            slides[currentSlide].classList.remove('active');
 
-function changeSlide(direction) {
-    // Resetear slide actual
-    slides[currentSlide].classList.remove('active');
-    
-    // Calcular siguiente
-    currentSlide = (currentSlide + direction + slides.length) % slides.length;
-    
-    // Activar siguiente
-    slides[currentSlide].classList.add('active');
-    
-    // Reiniciar video si existe
-    const video = slides[currentSlide].querySelector('video');
-    if (video) {
-        video.currentTime = 0;
-        video.play();
-    }
+            // Calcular siguiente
+            currentSlide = (currentSlide + direction + slides.length) % slides.length;
 
-    // Reiniciar barra y temporizador
-    progressValue = 0;
-}
+            // Activar siguiente
+            slides[currentSlide].classList.add('active');
 
-// SOPORTE PARA GESTOS (SWIPE)
-let startX = 0;
-const sliderElement = document.getElementById('slider');
+            // Reiniciar video si existe
+            const video = slides[currentSlide].querySelector('video');
+            if (video) {
+                video.currentTime = 0;
+                video.play();
+            }
 
-sliderElement.addEventListener('touchstart', (e) => {
-    startX = e.touches[0].clientX;
-    clearInterval(progressInterval); // Pausa al tocar
-}, {passive: true});
+            // Reiniciar barra y temporizador
+            progressValue = 0;
+        }
 
-sliderElement.addEventListener('touchend', (e) => {
-    let endX = e.changedTouches[0].clientX;
-    let diff = startX - endX;
-    
-    if (Math.abs(diff) > 70) {
-        changeSlide(diff > 0 ? 1 : -1);
-    }
-    
-    progressValue = 0;
-    progressInterval = setInterval(updateProgressBar, 20); // Reanuda
-});
+        // SOPORTE PARA GESTOS (SWIPE)
+        let startX = 0;
+        const sliderElement = document.getElementById('slider');
 
-/**
- * LÓGICA DE HORARIO (STATUS ENGINE)
- */
-function checkStatus() {
-    const now = new Date();
-    const day = now.getDay(); // 0: Dom, 3: Mié, 6: Sáb
-    const hour = now.getHours();
-    
-    const dot = document.getElementById('status-dot');
-    const text = document.getElementById('status-text');
-    
-    let isOpen = false;
-    
-    // Miércoles (3) a Sábado (6): 12pm - 9pm
-    if (day >= 3 && day <= 6) {
-        if (hour >= 12 && hour < 21) isOpen = true;
-    } 
-    // Domingo (0): 12pm - 8pm
-    else if (day === 0) {
-        if (hour >= 12 && hour < 20) isOpen = true;
-    }
+        sliderElement.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+            clearInterval(progressInterval); // Pausa al tocar
+        }, { passive: true });
 
-    if (isOpen) {
-        dot.style.color = "#25d366";
-        dot.style.background = "#25d366";
-        dot.style.boxShadow = "0 0 15px #25d366";
-        text.innerText = "Abierto ahora • ¡Hace tu pedido!";
-    } else {
-        dot.style.color = "#ff2200";
-        dot.style.background = "#ff2200";
-        dot.style.boxShadow = "0 0 15px #ff2200";
-        text.innerText = "Cerrado ahora • Abrimos a las 12 PM";
-    }
-}
+        sliderElement.addEventListener('touchend', (e) => {
+            let endX = e.changedTouches[0].clientX;
+            let diff = startX - endX;
 
-checkStatus();
-setInterval(checkStatus, 60000); // Revisa cada minuto
+            if (Math.abs(diff) > 70) {
+                changeSlide(diff > 0 ? 1 : -1);
+            }
 
-// EFECTO GLOW DINÁMICO
-document.querySelectorAll('.link-card').forEach(card => {
-    card.addEventListener('mousemove', e => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        card.style.setProperty('--x', `${x}px`);
-        card.style.setProperty('--y', `${y}px`);
-    });
-});
-
-// LÓGICA DE CUSTOM CURSOR
-const isDesktop = window.matchMedia("(pointer: fine)").matches;
-if (isDesktop) {
-    const dot = document.getElementById('cursor-dot');
-    const glow = document.getElementById('cursor-glow');
-
-    let mouseX = 0; let mouseY = 0;
-    let glowX = 0; let glowY = 0;
-
-    window.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-        
-        // El punto sigue instantáneamente
-        dot.style.left = `${mouseX}px`;
-        dot.style.top = `${mouseY}px`;
-    });
-
-    function animateCursor() {
-        // Interpolar (Ease) position for the glow
-        glowX += (mouseX - glowX) * 0.15;
-        glowY += (mouseY - glowY) * 0.15;
-        
-        glow.style.left = `${glowX}px`;
-        glow.style.top = `${glowY}px`;
-        
-        requestAnimationFrame(animateCursor);
-    }
-    animateCursor();
-
-    const interactables = document.querySelectorAll('a, button, .link-card, .slider-btn');
-    interactables.forEach(el => {
-        el.addEventListener('mouseenter', () => {
-            dot.classList.add('hovered');
-            glow.classList.add('hovered');
+            progressValue = 0;
+            progressInterval = setInterval(updateProgressBar, 20); // Reanuda
         });
-        el.addEventListener('mouseleave', () => {
-            dot.classList.remove('hovered');
-            glow.classList.remove('hovered');
+
+        /**
+         * LÓGICA DE HORARIO (STATUS ENGINE)
+         */
+        function checkStatus() {
+            const now = new Date();
+            const day = now.getDay(); // 0: Dom, 3: Mié, 6: Sáb
+            const hour = now.getHours();
+
+            const dot = document.getElementById('status-dot');
+            const text = document.getElementById('status-text');
+
+            let isOpen = false;
+
+            // Miércoles (3) a Sábado (6): 12pm - 9pm
+            if (day >= 3 && day <= 6) {
+                if (hour >= 12 && hour < 21) isOpen = true;
+            }
+            // Domingo (0): 12pm - 8pm
+            else if (day === 0) {
+                if (hour >= 12 && hour < 20) isOpen = true;
+            }
+
+            if (isOpen) {
+                dot.style.color = "#25d366";
+                dot.style.background = "#25d366";
+                dot.style.boxShadow = "0 0 15px #25d366";
+                text.innerText = "Abierto ahora • ¡Hace tu pedido!";
+            } else {
+                dot.style.color = "#ff2200";
+                dot.style.background = "#ff2200";
+                dot.style.boxShadow = "0 0 15px #ff2200";
+                text.innerText = "Cerrado ahora • Abrimos a las 12 PM";
+            }
+        }
+
+        checkStatus();
+        setInterval(checkStatus, 60000); // Revisa cada minuto
+
+        // EFECTO GLOW DINÁMICO
+        document.querySelectorAll('.link-card').forEach(card => {
+            card.addEventListener('mousemove', e => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--x', `${x}px`);
+                card.style.setProperty('--y', `${y}px`);
+            });
         });
-    });
-}
 
-/**
- * MENÚ HAMBURGUESA - LÓGICA
- */
-const menuToggle = document.getElementById('menu-toggle');
-const navDrawer = document.getElementById('nav-drawer');
-const menuOverlay = document.getElementById('menu-overlay');
-const closeMenu = document.getElementById('close-menu');
+        // LÓGICA DE CUSTOM CURSOR
+        const isDesktop = window.matchMedia("(pointer: fine)").matches;
+        if (isDesktop) {
+            const dot = document.getElementById('cursor-dot');
+            const glow = document.getElementById('cursor-glow');
 
-// Abrir menú
-menuToggle.addEventListener('click', () => {
-    menuToggle.classList.toggle('active');
-    navDrawer.classList.toggle('active');
-    menuOverlay.classList.toggle('active');
-});
+            let mouseX = 0; let mouseY = 0;
+            let glowX = 0; let glowY = 0;
 
-// Cerrar menú
-closeMenu.addEventListener('click', () => {
-    menuToggle.classList.remove('active');
-    navDrawer.classList.remove('active');
-    menuOverlay.classList.remove('active');
-});
+            window.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
 
-// Cerrar al tocar overlay
-menuOverlay.addEventListener('click', () => {
-    menuToggle.classList.remove('active');
-    navDrawer.classList.remove('active');
-    menuOverlay.classList.remove('active');
-});
+                // El punto sigue instantáneamente
+                dot.style.left = `${mouseX}px`;
+                dot.style.top = `${mouseY}px`;
+            });
 
-// Cerrar con tecla ESC
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && navDrawer.classList.contains('active')) {
-        menuToggle.classList.remove('active');
-        navDrawer.classList.remove('active');
-        menuOverlay.classList.remove('active');
-    }
-});
+            function animateCursor() {
+                // Interpolar (Ease) position for the glow
+                glowX += (mouseX - glowX) * 0.15;
+                glowY += (mouseY - glowY) * 0.15;
 
-// Cerrar al clickear un link
-document.querySelectorAll('.drawer-nav .link-card').forEach(link => {
-    link.addEventListener('click', () => {
-        menuToggle.classList.remove('active');
-        navDrawer.classList.remove('active');
-        menuOverlay.classList.remove('active');
-    });
-});
+                glow.style.left = `${glowX}px`;
+                glow.style.top = `${glowY}px`;
 
-// Copiar links al drawer en móvil
-function setupDrawerNavigation() {
-    const linksContainer = document.querySelector('.links-container');
-    const drawerNav = document.querySelector('.drawer-nav');
-    
-    if (linksContainer && window.innerWidth <= 768) {
-        drawerNav.innerHTML = linksContainer.innerHTML;
-        
-        // Re-agregar event listeners a los nuevos links
+                requestAnimationFrame(animateCursor);
+            }
+            animateCursor();
+
+            const interactables = document.querySelectorAll('a, button, .link-card, .slider-btn');
+            interactables.forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    dot.classList.add('hovered');
+                    glow.classList.add('hovered');
+                });
+                el.addEventListener('mouseleave', () => {
+                    dot.classList.remove('hovered');
+                    glow.classList.remove('hovered');
+                });
+            });
+        }
+
+        /**
+         * MENÚ HAMBURGUESA - LÓGICA
+         */
+        const menuToggle = document.getElementById('menu-toggle');
+        const navDrawer = document.getElementById('nav-drawer');
+        const menuOverlay = document.getElementById('menu-overlay');
+        const closeMenu = document.getElementById('close-menu');
+
+        // Abrir menú
+        menuToggle.addEventListener('click', () => {
+            menuToggle.classList.toggle('active');
+            navDrawer.classList.toggle('active');
+            menuOverlay.classList.toggle('active');
+        });
+
+        // Cerrar menú
+        closeMenu.addEventListener('click', () => {
+            menuToggle.classList.remove('active');
+            navDrawer.classList.remove('active');
+            menuOverlay.classList.remove('active');
+        });
+
+        // Cerrar al tocar overlay
+        menuOverlay.addEventListener('click', () => {
+            menuToggle.classList.remove('active');
+            navDrawer.classList.remove('active');
+            menuOverlay.classList.remove('active');
+        });
+
+        // Cerrar con tecla ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && navDrawer.classList.contains('active')) {
+                menuToggle.classList.remove('active');
+                navDrawer.classList.remove('active');
+                menuOverlay.classList.remove('active');
+            }
+        });
+
+        // Cerrar al clickear un link
         document.querySelectorAll('.drawer-nav .link-card').forEach(link => {
             link.addEventListener('click', () => {
                 menuToggle.classList.remove('active');
@@ -1472,358 +1676,369 @@ function setupDrawerNavigation() {
                 menuOverlay.classList.remove('active');
             });
         });
-    }
-}
 
-// Llamar al cargar
-setupDrawerNavigation();
-window.addEventListener('resize', setupDrawerNavigation);
+        // Copiar links al drawer en móvil
+        function setupDrawerNavigation() {
+            const linksContainer = document.querySelector('.links-container');
+            const drawerNav = document.querySelector('.drawer-nav');
 
-/**
- * SISTEMA DE CHAT CON GEMINI API
- */
+            if (linksContainer && window.innerWidth <= 768) {
+                drawerNav.innerHTML = linksContainer.innerHTML;
 
-// DATOS DEL MENÚ
-const menuData = [
-    {
-        name: "Perros Calientes",
-        items: [
-            { name: "Pilo's Clásico", desc: "Perro caliente tradicional con salsas caseras", price: 2500, ingredients: ["Pan", "Salchicha", "Mostaza", "Tomate", "Cebolla", "Salsa casera"] },
-            { name: "Megapilo", desc: "Doble salchicha con tocino y queso fundido", price: 4500, ingredients: ["Pan", "Doble salchicha", "Tocino", "Queso fundido", "Mostaza", "Mayonesa"] },
-            { name: "Pilo Picante", desc: "Con jalapeños, salsa picante y cebolla morada", price: 2800, ingredients: ["Pan", "Salchicha", "Jalapeños", "Salsa picante", "Cebolla morada", "Llima", "Cilantro"] }
-        ]
-    },
-    {
-        name: "Combos",
-        items: [
-            { name: "Combo Clásico", desc: "Perro + papas + bebida", price: 4200, ingredients: ["Perro caliente", "Papas fritas", "Bebida a escoger"] },
-            { name: "Combo Premium", desc: "2 perros + papas grandes + 2 bebidas", price: 8500, ingredients: ["2 perros calientes", "Papas grandes", "2 bebidas a escoger"] },
-            { name: "Combo Amigos", desc: "3 perros + papas + bebida grande", price: 10500, ingredients: ["3 perros calientes", "Papas fritas", "Bebida grande"] }
-        ]
-    },
-    {
-        name: "Bebidas",
-        items: [
-            { name: "Refresco Lata", desc: "Coca-Cola, Fanta o Sprite", price: 1200, ingredients: ["Refresco en lata"] },
-            { name: "Jugo Natural", desc: "Naranja, melón o piña", price: 1500, ingredients: ["Jugo natural recién exprimido"] },
-            { name: "Limonada Casera", desc: "Refrescante y hecha en el momento", price: 1800, ingredients: ["Limón fresco", "Agua purificada", "Azúcar", "Hielo"] }
-        ]
-    },
-    {
-        name: "Acompañamientos",
-        items: [
-            { name: "Papas Fritas", desc: "Crujientes y doradas, tamaño regular", price: 1500, ingredients: ["Papas", "Sal", "Aceite vegetal"] },
-            { name: "Papas Grandes", desc: "Extra crocantes, porción grande", price: 2200, ingredients: ["Papas", "Sal", "Aceite vegetal"] },
-            { name: "Aros de Cebolla", desc: "Crujientes y sabrosos", price: 2000, ingredients: ["Cebolla fresca", "Harina", "Especias", "Aceite vegetal"] }
-        ]
-    }
-];
-
-// CONFIGURACIÓN DEL CHAT
-const GEMINI_API_KEY = 'AIzaSyDD3BdlStmmihSe3ZU_DCHADI3pn6yU7Fo';
-const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent';
-
-// CREAR CONTEXTO DEL MENÚ PARA EL AI
-function buildMenuContext() {
-    let context = "Eres un asistente excepcional de ventas para Pilo's Dogs, el mejor lugar de perros calientes en Costa Rica. NO eres un chatbot robótico: eres como un amigo 'tico' que conoce perfectamente los productos y tiene la habilidad natural de hacer que la gente quiera probarlos. Tu meta es hacer una experiencia de conversación genuina donde el cliente se sienta entendido y termina pidiendo más de lo que pensaba.\n\nIMPORTANTE: Después de cada respuesta, evalúa si hay oportunidad de upselling o cross-selling. No dejes dinero sobre la mesa.\n\n";
-    
-    context += "INFORMACIÓN DEL MENÚ (Guardar en tu contexto mental):\n";
-    context += "═══════════════════════════════════════════════════════════\n";
-    menuData.forEach(category => {
-        context += `\n📌 ${category.name}:\n`;
-        category.items.forEach(item => {
-            context += `   • ${item.name} → ₡${item.price.toLocaleString()}\n     ${item.desc}\n     Lleva: ${item.ingredients.join(', ')}\n`;
-        });
-    });
-    
-    context += "\n═══════════════════════════════════════════════════════════\n";
-    context += "\n🧠 ESTRATEGIA PSICOLÓGICA (NEUROVENTAS - TÚ LA VIVES NATURALMENTE):\n\n";
-    
-    context += "1️⃣ APERTURA COGNITIVA (Crear curiosidad desde el inicio):\n";
-    context += "   → Empieza con una pregunta genuina sobre sus gustos, no con un catálogo\n";
-    context += "   → Formula preguntas que abran su mente: '¿Es tu primera vez probando nuestros perros?' o '¿Qué tipo de sabores te encantan?'\n";
-    context += "   → Crea intriga: 'Espérate, tengo que contarte algo de nuestro especial...'\n\n";
-    
-    context += "2️⃣ EMPATÍA ACTIVA (Escuchar realmente):\n";
-    context += "   → Si pregunta sobre ingredientes específicos, no solo contesta: relaciona: 'Ah, sos de los que les importa saber qué comen... mae, te va a encimar el Megapilo, te cuento por qué...'\n";
-    context += "   → Valida sus preocupaciones: 'Entendés perfectamente, la salsa al exceso pa' algunos es mucho'\n";
-    context += "   → Responde a emociones: Si están 'sin plata' → enfatiza ofertas; si están de fiesta → enfatiza cantidad/combos\n\n";
-    
-    context += "3️⃣ ESCASEZ SUTIL (Sin ser desesperado) + PRUEBA SOCIAL COMBINADAS:\n";
-    context += "   → Si alguien dice queremos 'para 3' → 'Justo ese Combo Amigos es lo que llueve en grupo los viernes, mae. Ese combo te sale...'\n";
-    context += "   → 'El Megapilo es el favorito en viernes... cuando hay hambre de esas, es lo que piden'\n";
-    context += "   → 'Casi todos que prueban el Pilo Picante vuelven específicamente por ese... la mezcla de jalapeños con la salsa nuestra es de lo mejor'\n";
-    context += "   → 'Los que vienen en grupo, mezclan... algunos Clásico, algunos Megapilo. Es lo que funciona'\n";
-    context += "   → NUNCA suene como vendedor desesperado. Suene como compartiendo lo que observa naturalmente\n";
-    context += "   → Menciona frecuencia: 'Diay, casi todos que...', 'La gente que viene aquí...', 'Los viernes es común ver...'\n\n";
-    
-    context += "4️⃣ STORYTELLING (Dale vida a los productos):\n";
-    context += "   → No digas 'tiene salsa casera', di: 'Esa salsa es la que nos hace diferentes... lleva ingredientes que el jefe mismo selecciona'\n";
-    context += "   → Crea contexto emocional: 'Es el tipo de perro que pides con amigos en una noche de viernes'\n";
-    context += "   → Humaniza: 'El tocino que le ponemos al Megapilo es de lo mejor que podes encontrar'\n\n";
-    
-    context += "6️⃣ UPSELLING NATURAL (Sugerir lo premium sin presionar - SIEMPRE BUSCA LA OPORTUNIDAD):\n";
-    context += "   → Si dice 'Pilo Clásico' → 'Diay… si probás el Megapilo solo esta vez, vas a ver por qué la gente va por ese… es como el Clásico pero en versión 'de lo mejor'. Ya que estás probando por primera vez, dale una oportunidad'\n";
-    context += "   → Si pide 'para 3 con bebida' (Combo Amigos ₡10,500) → Pregunta si vienen con hambre normal o de esas que no perdonan. Sugiere 1-2 Megapilo en la mezcla porque hace diferencia. Así: 'Te sale ₡3,500 por persona… uno o dos Megapilo en la mix y la experiencia es otra cosa. ¿Cómo la ven?'\n";
-    context += "   → CLAVE: CONTEXTURALIZA PRECIO POR PERSONA cuando hay grupo\n";
-    context += "   → Siempre da opciones, no ordenes. Pregunta primero sobre el hambre/contexto\n\n";
-    
-    context += "7️⃣ CROSS-SELLING INTELIGENTE (Lo que combina perfecto):\n";
-    context += "   → Perro solo → 'Con papas grandes queda de lo mejor, no es lo mismo un perro solo…'\n";
-    context += "   → Papas → 'Las papas son lo completo si les sumás una bebida… mitiga la sed'\n";
-    context += "   → Sin bebida mencionada → 'Una limonada da tuanis con los perros picantes… te refresca después'\n";
-    context += "   → Aros de cebolla → 'Para compartir algo mientras llega el perro… la gente te va a querer'\n";
-    context += "   → SIEMPRE conecta cross-selling a un beneficio emocional, no solo al precio\n\n";
-    
-    context += "8️⃣ MEMORIA CONVERSACIONAL (Seguir el hilo):\n";
-    context += "   → Mantén en mente cada pregunta anterior\n";
-    context += "   → Si preguntó sobre esto antes, no repitas: 'Ya te había mencionado que…' vs 'Te acordás que...'\n";
-    context += "   → Dosifica: no abruces con información, suelta poco a poco\n";
-    context += "   → Personaliza recomendaciones basadas en sus preferencias mencionadas\n\n";
-    
-    context += "8️⃣ CONTEXTO EMOCIONAL PROFUNDO (Vender experiencias, no perros):\n";
-    context += "   → NO digas 'quedás lleno', di 'llegan a casa felices, sin hambre, sin sed'\n";
-    context += "   → NO digas 'es sabroso', di 'es el tipo de sabor que se quedan recordando toda la semana'\n";
-    context += "   → NO digas 'es lo mejor', di con historia detrás: 'esa salsa es la que el jefe selecciona cada mañana'\n";
-    context += "   → Conecta con emociones: Si es grupo → 'es donde todos quedan contentos'; si es primera vez → 'es lo que va a marcar tu experiencia'\n";
-    context += "   → Crea escenas mentales: 'Imaginate llegar con eso a la casa… la gente te va a querer'\n\n";
-    
-    context += "9️⃣ OBJECIÓN HANDLING (Responder como amigo, no como vendedor):\n";
-    context += "   → 'Es muy caro' → 'La diferencia es ¢2,000… para la cantidad y calidad que vas a recibir, mae, te lo juro que sale'\n";
-    context += "   → 'No como picante' → 'Dale, el Clásico es suave suave… pero te digo que el Pilo Picante dice 'picante' pero es dosificado'\n";
-    context += "   → 'Soy vegetariano' → 'Entiendo perfecto. Lamentablemente nuestro menú está centrado en perros, pero te recomendaría los aros de cebolla con papas… bastante salvable'\n";
-    context += "   → Nunca digas 'tienes razón, es caro'… reconoce el precio pero valida el producto\n\n";
-    
-    context += "🔟 OPCIONES CLARAS (No dejar en blanco):\n";
-    context += "   → Cuando pregunta '¿qué me recomiendas?' no digas '¿te gusta aventura o clásico?' - Eso confunde\n";
-    context += "   → Mejor: 'Para hambre como la tuya, el Megapilo o el Combo Amigos. Uno es cantidad, el otro es cantidad + compañía'\n";
-    context += "   → Si es grupo, ofrece MEZCLA: 'Cuando vienen varios, mezclan… uno Clásico, uno Megapilo, uno Picante. Así cada quién tiene su sabor'\n";
-    context += "   → Siempre deja una pregunta clara de cierre: '¿Con cuál nos vamos?'\n\n";
-    
-    context += "❌ QUÉ NUNCA HACER:\n";
-    context += "   ✗ Usar comillas, numeraciones o listas EN RESPUESTAS (suena robótico) - Convierte a prosa\n";
-    context += "   ✗ Usar asteriscos o bullets (* • -) jamás en respuestas - Escribe natural\n";
-    context += "   ✗ Usar exclamaciones excesivas (máx 1 por párrafo) - Suena teatral, no tico\n";
-    context += "   ✗ Repetir información que ya dijiste\n";
-    context += "   ✗ Parecer que vendes, parecer que recomendas\n";
-    context += "   ✗ Ignorar el contexto emocional: si alguien dice 'tengo hambre', responde emocionalmente\n";
-    context += "   ✗ Sonar corporativo o usar jerga de vendedor\n";
-    context += "   ✗ Describir combos con listas. Di: 'El combo te trae X, Y y Z por ₡precio' en una línea\n";
-    context += "   ✗ Iignore oportunidades de upselling. Si alguien pide básico, pregunta si quiere upgrade\n";
-    context += "   ✗ NO des precio total sin contexto de grupo. Si son varios, divide: '₡X por persona'\n\n";
-    
-    context += "✅ TÚ ERES:\n";
-    context += "   ✓ Un tico que ama el producto (no un vendedor)\n";
-    context += "   ✓ Genuinamente interesado en que el cliente quede feliz\n";
-    context += "   ✓ Alguien que habla NATURAL: usa 'diay', 'mae', 'de lo mejor', 'tuanis', 'pura vida', 'facilito'\n";
-    context += "   ✓ Capaz de seguir conversaciones complejas sin perder el hilo\n";
-    context += "   ✓ Alguien que sabe CUÁNDO sugerir y cuándo no. Cuando ya tienen claro qué quieren, no insistas\n";
-    context += "   ✓ Creativo para hacer que la gente quiera más sin ser invasivo\n";
-    context += "   ✓ Conversacional: Máximo UNA exclamación por párrafo\n";
-    context += "   ✓ Vende experiencias emocionales, no listas de ingredientes\n";
-    context += "   ✓ Siempre busca oportunidades de upselling pero de forma orgánica, no forzada\n\n";
-    
-    context += "CÁLCULO DE PEDIDOS:\n";
-    context += "   → Si el usuario dice sus artículos: suma transparente, muestra detalle\n";
-    context += "   → Formato: '₡X,XXX' con separador de miles\n";
-    context += "   → Acompaña con emoji o energía: 'Total tuanis: ₡8,500'\n\n";
-    
-    context += "═══════════════════════════════════════════════════════════\n";
-    
-    return context;
-}
-
-// CONTROLADOR DE CHAT
-class ChatManager {
-    constructor() {
-        this.messages = [];
-        this.isLoading = false;
-        this.menuContext = buildMenuContext();
-        this.initializeElements();
-        this.attachEventListeners();
-    }
-
-    initializeElements() {
-        this.floatBtn = document.getElementById('chat-float-btn');
-        this.widget = document.getElementById('chat-widget');
-        this.messagesContainer = document.getElementById('chat-messages');
-        this.input = document.getElementById('chat-input');
-        this.sendBtn = document.getElementById('chat-send-btn');
-        this.closeBtn = document.getElementById('chat-close-btn');
-    }
-
-    attachEventListeners() {
-        this.floatBtn.addEventListener('click', () => this.toggleChat());
-        this.closeBtn.addEventListener('click', () => this.closeChat());
-        this.sendBtn.addEventListener('click', () => this.sendMessage());
-        this.input.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter' && !e.shiftKey) {
-                e.preventDefault();
-                this.sendMessage();
+                // Re-agregar event listeners a los nuevos links
+                document.querySelectorAll('.drawer-nav .link-card').forEach(link => {
+                    link.addEventListener('click', () => {
+                        menuToggle.classList.remove('active');
+                        navDrawer.classList.remove('active');
+                        menuOverlay.classList.remove('active');
+                    });
+                });
             }
-        });
-    }
-
-    toggleChat() {
-        if (this.widget.classList.contains('hidden')) {
-            this.openChat();
-        } else {
-            this.closeChat();
         }
-    }
 
-    openChat() {
-        this.widget.classList.remove('hidden');
-        this.floatBtn.classList.add('hidden');
-        this.input.focus();
-        
-        // Mostrar mensaje de bienvenida si es la primera vez
-        if (this.messages.length === 0) {
-            this.addMessage('bot', '¡Ey, mae! 🌭 Bienvenido a Pilo\'s Dogs. Acá no voy a andar con preguntas aburridas... simplemente contame qué te provoca hoy. ¿Tenés hambre de algo específico? ¿Sos nuevo por acá? ¿Qué se te antoja? Yo te cuento qué es lo de lo mejor según mi experiencia 👌');
-        }
-    }
+        // Llamar al cargar
+        setupDrawerNavigation();
+        window.addEventListener('resize', setupDrawerNavigation);
 
-    closeChat() {
-        this.widget.classList.add('hidden');
-        this.floatBtn.classList.remove('hidden');
-    }
+        /**
+         * SISTEMA DE CHAT CON GEMINI API
+         */
 
-    addMessage(sender, text) {
-        const msgObj = { sender, text, timestamp: Date.now() };
-        this.messages.push(msgObj);
-        this.renderMessage(msgObj);
-        this.messagesContainer.scrollTop = this.messagesContainer.scrollHeight;
-    }
-
-    renderMessage(msgObj) {
-        const msgEl = document.createElement('div');
-        msgEl.className = `chat-message ${msgObj.sender}`;
-        
-        const avatar = document.createElement('div');
-        avatar.className = 'chat-avatar';
-        avatar.innerHTML = msgObj.sender === 'user' ? '👤' : '🤖';
-        
-        const bubble = document.createElement('div');
-        bubble.className = 'chat-bubble';
-        bubble.innerHTML = this.formatMessage(msgObj.text);
-        
-        msgEl.appendChild(avatar);
-        msgEl.appendChild(bubble);
-        this.messagesContainer.appendChild(msgEl);
-    }
-
-    formatMessage(text) {
-        // Convertir saltos de línea a <br>
-        return text.replace(/\n/g, '<br>');
-    }
-
-    showTyping() {
-        const msgEl = document.createElement('div');
-        msgEl.className = 'chat-message bot';
-        msgEl.id = 'typing-indicator';
-        
-        const avatar = document.createElement('div');
-        avatar.className = 'chat-avatar';
-        avatar.innerHTML = '🤖';
-        
-        const typing = document.createElement('div');
-        typing.className = 'chat-typing';
-        typing.innerHTML = '<div class="chat-dot"></div><div class="chat-dot"></div><div class="chat-dot"></div>';
-        
-        msgEl.appendChild(avatar);
-        msgEl.appendChild(typing);
-        this.messagesContainer.appendChild(msgEl);
-        this.messagesContainer.scrollTop = this.messagesContainer.scrollHeight;
-    }
-
-    removeTyping() {
-        const typing = document.getElementById('typing-indicator');
-        if (typing) typing.remove();
-    }
-
-    async sendMessage() {
-        const text = this.input.value.trim();
-        if (!text || this.isLoading) return;
-
-        this.input.value = '';
-        this.sendBtn.disabled = true;
-        this.isLoading = true;
-
-        // Agregar mensaje del usuario
-        this.addMessage('user', text);
-
-        // Mostrar indicador de escritura
-        this.showTyping();
-
-        try {
-            // Llamar a Gemini
-            const response = await this.callGemini(text);
-            this.removeTyping();
-            this.addMessage('bot', response);
-        } catch (error) {
-            console.error('Error:', error);
-            this.removeTyping();
-            this.addMessage('bot', '❌ Lo siento, hubo un error. Por favor intenta de nuevo.\nError: ' + error.message);
-        } finally {
-            this.isLoading = false;
-            this.sendBtn.disabled = false;
-            this.input.focus();
-        }
-    }
-
-    async callGemini(userMessage) {
-        const payload = {
-            contents: [{
-                parts: [{
-                    text: this.menuContext + "\n\nPregunta del cliente: " + userMessage
-                }]
-            }],
-            generationConfig: {
-                temperature: 0.7,
-                topK: 40,
-                topP: 0.95,
-                maxOutputTokens: 1024,
+        // DATOS DEL MENÚ
+        const menuData = [
+            {
+                name: "Perros Calientes",
+                items: [
+                    { name: "Pilo's Clásico", desc: "Perro caliente tradicional con salsas caseras", price: 2500, ingredients: ["Pan", "Salchicha", "Mostaza", "Tomate", "Cebolla", "Salsa casera"] },
+                    { name: "Megapilo", desc: "Doble salchicha con tocino y queso fundido", price: 4500, ingredients: ["Pan", "Doble salchicha", "Tocino", "Queso fundido", "Mostaza", "Mayonesa"] },
+                    { name: "Pilo Picante", desc: "Con jalapeños, salsa picante y cebolla morada", price: 2800, ingredients: ["Pan", "Salchicha", "Jalapeños", "Salsa picante", "Cebolla morada", "Llima", "Cilantro"] }
+                ]
             },
-            safetySettings: [
-                { category: 'HARM_CATEGORY_HARASSMENT', threshold: 'BLOCK_MEDIUM_AND_ABOVE' },
-                { category: 'HARM_CATEGORY_HATE_SPEECH', threshold: 'BLOCK_MEDIUM_AND_ABOVE' },
-                { category: 'HARM_CATEGORY_SEXUALLY_EXPLICIT', threshold: 'BLOCK_MEDIUM_AND_ABOVE' },
-                { category: 'HARM_CATEGORY_DANGEROUS_CONTENT', threshold: 'BLOCK_MEDIUM_AND_ABOVE' }
-            ]
-        };
+            {
+                name: "Combos",
+                items: [
+                    { name: "Combo Clásico", desc: "Perro + papas + bebida", price: 4200, ingredients: ["Perro caliente", "Papas fritas", "Bebida a escoger"] },
+                    { name: "Combo Premium", desc: "2 perros + papas grandes + 2 bebidas", price: 8500, ingredients: ["2 perros calientes", "Papas grandes", "2 bebidas a escoger"] },
+                    { name: "Combo Amigos", desc: "3 perros + papas + bebida grande", price: 10500, ingredients: ["3 perros calientes", "Papas fritas", "Bebida grande"] }
+                ]
+            },
+            {
+                name: "Bebidas",
+                items: [
+                    { name: "Refresco Lata", desc: "Coca-Cola, Fanta o Sprite", price: 1200, ingredients: ["Refresco en lata"] },
+                    { name: "Jugo Natural", desc: "Naranja, melón o piña", price: 1500, ingredients: ["Jugo natural recién exprimido"] },
+                    { name: "Limonada Casera", desc: "Refrescante y hecha en el momento", price: 1800, ingredients: ["Limón fresco", "Agua purificada", "Azúcar", "Hielo"] }
+                ]
+            },
+            {
+                name: "Acompañamientos",
+                items: [
+                    { name: "Papas Fritas", desc: "Crujientes y doradas, tamaño regular", price: 1500, ingredients: ["Papas", "Sal", "Aceite vegetal"] },
+                    { name: "Papas Grandes", desc: "Extra crocantes, porción grande", price: 2200, ingredients: ["Papas", "Sal", "Aceite vegetal"] },
+                    { name: "Aros de Cebolla", desc: "Crujientes y sabrosos", price: 2000, ingredients: ["Cebolla fresca", "Harina", "Especias", "Aceite vegetal"] }
+                ]
+            }
+        ];
 
-        const response = await fetch(`${GEMINI_API_URL}?key=${GEMINI_API_KEY}`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-        });
+        // CONFIGURACIÓN DEL CHAT
+        const OPENAI_API_KEY = 'sk-INSERT-OPENAI-API-KEY-HERE';
+        const OPENAI_API_URL = 'https://api.openai.com/v1/chat/completions';
 
-        if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData.error?.message || `Error ${response.status}`);
+        // CREAR CONTEXTO DEL MENÚ PARA EL AI
+        function buildMenuContext() {
+            let context = "Eres un asistente excepcional de ventas para Pilo's Dogs, el mejor lugar de perros calientes en Costa Rica. NO eres un chatbot robótico: eres como un amigo 'tico' que conoce perfectamente los productos y tiene la habilidad natural de hacer que la gente quiera probarlos. Tu meta es hacer una experiencia de conversación genuina donde el cliente se sienta entendido y termina pidiendo más de lo que pensaba.\n\nIMPORTANTE: Después de cada respuesta, evalúa si hay oportunidad de upselling o cross-selling. No dejes dinero sobre la mesa.\n\n";
+
+            context += "INFORMACIÓN DEL MENÚ (Guardar en tu contexto mental):\n";
+            context += "═══════════════════════════════════════════════════════════\n";
+            menuData.forEach(category => {
+                context += `\n📌 ${category.name}:\n`;
+                category.items.forEach(item => {
+                    context += `   • ${item.name} → ₡${item.price.toLocaleString()}\n     ${item.desc}\n     Lleva: ${item.ingredients.join(', ')}\n`;
+                });
+            });
+
+            context += "\n═══════════════════════════════════════════════════════════\n";
+            context += "\n🧠 ESTRATEGIA PSICOLÓGICA (NEUROVENTAS - TÚ LA VIVES NATURALMENTE):\n\n";
+
+            context += "1️⃣ APERTURA COGNITIVA (Crear curiosidad desde el inicio):\n";
+            context += "   → Empieza con una pregunta genuina sobre sus gustos, no con un catálogo\n";
+            context += "   → Formula preguntas que abran su mente: '¿Es tu primera vez probando nuestros perros?' o '¿Qué tipo de sabores te encantan?'\n";
+            context += "   → Crea intriga: 'Espérate, tengo que contarte algo de nuestro especial...'\n\n";
+
+            context += "2️⃣ EMPATÍA ACTIVA (Escuchar realmente):\n";
+            context += "   → Si pregunta sobre ingredientes específicos, no solo contesta: relaciona: 'Ah, sos de los que les importa saber qué comen... mae, te va a encimar el Megapilo, te cuento por qué...'\n";
+            context += "   → Valida sus preocupaciones: 'Entendés perfectamente, la salsa al exceso pa' algunos es mucho'\n";
+            context += "   → Responde a emociones: Si están 'sin plata' → enfatiza ofertas; si están de fiesta → enfatiza cantidad/combos\n\n";
+
+            context += "3️⃣ ESCASEZ SUTIL (Sin ser desesperado) + PRUEBA SOCIAL COMBINADAS:\n";
+            context += "   → Si alguien dice queremos 'para 3' → 'Justo ese Combo Amigos es lo que llueve en grupo los viernes, mae. Ese combo te sale...'\n";
+            context += "   → 'El Megapilo es el favorito en viernes... cuando hay hambre de esas, es lo que piden'\n";
+            context += "   → 'Casi todos que prueban el Pilo Picante vuelven específicamente por ese... la mezcla de jalapeños con la salsa nuestra es de lo mejor'\n";
+            context += "   → 'Los que vienen en grupo, mezclan... algunos Clásico, algunos Megapilo. Es lo que funciona'\n";
+            context += "   → NUNCA suene como vendedor desesperado. Suene como compartiendo lo que observa naturalmente\n";
+            context += "   → Menciona frecuencia: 'Diay, casi todos que...', 'La gente que viene aquí...', 'Los viernes es común ver...'\n\n";
+
+            context += "4️⃣ STORYTELLING (Dale vida a los productos):\n";
+            context += "   → No digas 'tiene salsa casera', di: 'Esa salsa es la que nos hace diferentes... lleva ingredientes que el jefe mismo selecciona'\n";
+            context += "   → Crea contexto emocional: 'Es el tipo de perro que pides con amigos en una noche de viernes'\n";
+            context += "   → Humaniza: 'El tocino que le ponemos al Megapilo es de lo mejor que podes encontrar'\n\n";
+
+            context += "6️⃣ UPSELLING NATURAL (Sugerir lo premium sin presionar - SIEMPRE BUSCA LA OPORTUNIDAD):\n";
+            context += "   → Si dice 'Pilo Clásico' → 'Diay… si probás el Megapilo solo esta vez, vas a ver por qué la gente va por ese… es como el Clásico pero en versión 'de lo mejor'. Ya que estás probando por primera vez, dale una oportunidad'\n";
+            context += "   → Si pide 'para 3 con bebida' (Combo Amigos ₡10,500) → Pregunta si vienen con hambre normal o de esas que no perdonan. Sugiere 1-2 Megapilo en la mezcla porque hace diferencia. Así: 'Te sale ₡3,500 por persona… uno o dos Megapilo en la mix y la experiencia es otra cosa. ¿Cómo la ven?'\n";
+            context += "   → CLAVE: CONTEXTURALIZA PRECIO POR PERSONA cuando hay grupo\n";
+            context += "   → Siempre da opciones, no ordenes. Pregunta primero sobre el hambre/contexto\n\n";
+
+            context += "7️⃣ CROSS-SELLING INTELIGENTE (Lo que combina perfecto):\n";
+            context += "   → Perro solo → 'Con papas grandes queda de lo mejor, no es lo mismo un perro solo…'\n";
+            context += "   → Papas → 'Las papas son lo completo si les sumás una bebida… mitiga la sed'\n";
+            context += "   → Sin bebida mencionada → 'Una limonada da tuanis con los perros picantes… te refresca después'\n";
+            context += "   → Aros de cebolla → 'Para compartir algo mientras llega el perro… la gente te va a querer'\n";
+            context += "   → SIEMPRE conecta cross-selling a un beneficio emocional, no solo al precio\n\n";
+
+            context += "8️⃣ MEMORIA CONVERSACIONAL (Seguir el hilo):\n";
+            context += "   → Mantén en mente cada pregunta anterior\n";
+            context += "   → Si preguntó sobre esto antes, no repitas: 'Ya te había mencionado que…' vs 'Te acordás que...'\n";
+            context += "   → Dosifica: no abruces con información, suelta poco a poco\n";
+            context += "   → Personaliza recomendaciones basadas en sus preferencias mencionadas\n\n";
+
+            context += "8️⃣ CONTEXTO EMOCIONAL PROFUNDO (Vender experiencias, no perros):\n";
+            context += "   → NO digas 'quedás lleno', di 'llegan a casa felices, sin hambre, sin sed'\n";
+            context += "   → NO digas 'es sabroso', di 'es el tipo de sabor que se quedan recordando toda la semana'\n";
+            context += "   → NO digas 'es lo mejor', di con historia detrás: 'esa salsa es la que el jefe selecciona cada mañana'\n";
+            context += "   → Conecta con emociones: Si es grupo → 'es donde todos quedan contentos'; si es primera vez → 'es lo que va a marcar tu experiencia'\n";
+            context += "   → Crea escenas mentales: 'Imaginate llegar con eso a la casa… la gente te va a querer'\n\n";
+
+            context += "9️⃣ OBJECIÓN HANDLING (Responder como amigo, no como vendedor):\n";
+            context += "   → 'Es muy caro' → 'La diferencia es ¢2,000… para la cantidad y calidad que vas a recibir, mae, te lo juro que sale'\n";
+            context += "   → 'No como picante' → 'Dale, el Clásico es suave suave… pero te digo que el Pilo Picante dice 'picante' pero es dosificado'\n";
+            context += "   → 'Soy vegetariano' → 'Entiendo perfecto. Lamentablemente nuestro menú está centrado en perros, pero te recomendaría los aros de cebolla con papas… bastante salvable'\n";
+            context += "   → Nunca digas 'tienes razón, es caro'… reconoce el precio pero valida el producto\n\n";
+
+            context += "🔟 OPCIONES CLARAS (No dejar en blanco):\n";
+            context += "   → Cuando pregunta '¿qué me recomiendas?' no digas '¿te gusta aventura o clásico?' - Eso confunde\n";
+            context += "   → Mejor: 'Para hambre como la tuya, el Megapilo o el Combo Amigos. Uno es cantidad, el otro es cantidad + compañía'\n";
+            context += "   → Si es grupo, ofrece MEZCLA: 'Cuando vienen varios, mezclan… uno Clásico, uno Megapilo, uno Picante. Así cada quién tiene su sabor'\n";
+            context += "   → Siempre deja una pregunta clara de cierre: '¿Con cuál nos vamos?'\n\n";
+
+            context += "❌ QUÉ NUNCA HACER:\n";
+            context += "   ✗ Usar comillas, numeraciones o listas EN RESPUESTAS (suena robótico) - Convierte a prosa\n";
+            context += "   ✗ Usar asteriscos o bullets (* • -) jamás en respuestas - Escribe natural\n";
+            context += "   ✗ Usar exclamaciones excesivas (máx 1 por párrafo) - Suena teatral, no tico\n";
+            context += "   ✗ Repetir información que ya dijiste\n";
+            context += "   ✗ Parecer que vendes, parecer que recomendas\n";
+            context += "   ✗ Ignorar el contexto emocional: si alguien dice 'tengo hambre', responde emocionalmente\n";
+            context += "   ✗ Sonar corporativo o usar jerga de vendedor\n";
+            context += "   ✗ Describir combos con listas. Di: 'El combo te trae X, Y y Z por ₡precio' en una línea\n";
+            context += "   ✗ Iignore oportunidades de upselling. Si alguien pide básico, pregunta si quiere upgrade\n";
+            context += "   ✗ NO des precio total sin contexto de grupo. Si son varios, divide: '₡X por persona'\n\n";
+
+            context += "✅ TÚ ERES:\n";
+            context += "   ✓ Un tico que ama el producto (no un vendedor)\n";
+            context += "   ✓ Genuinamente interesado en que el cliente quede feliz\n";
+            context += "   ✓ Alguien que habla NATURAL: usa 'diay', 'mae', 'de lo mejor', 'tuanis', 'pura vida', 'facilito'\n";
+            context += "   ✓ Capaz de seguir conversaciones complejas sin perder el hilo\n";
+            context += "   ✓ Alguien que sabe CUÁNDO sugerir y cuándo no. Cuando ya tienen claro qué quieren, no insistas\n";
+            context += "   ✓ Creativo para hacer que la gente quiera más sin ser invasivo\n";
+            context += "   ✓ Conversacional: Máximo UNA exclamación por párrafo\n";
+            context += "   ✓ Vende experiencias emocionales, no listas de ingredientes\n";
+            context += "   ✓ Siempre busca oportunidades de upselling pero de forma orgánica, no forzada\n\n";
+
+            context += "CÁLCULO DE PEDIDOS:\n";
+            context += "   → Si el usuario dice sus artículos: suma transparente, muestra detalle\n";
+            context += "   → Formato: '₡X,XXX' con separador de miles\n";
+            context += "   → Acompaña con emoji o energía: 'Total tuanis: ₡8,500'\n\n";
+
+            context += "═══════════════════════════════════════════════════════════\n";
+
+            return context;
         }
 
-        const data = await response.json();
-        
-        if (!data.candidates || !data.candidates[0]?.content?.parts?.[0]?.text) {
-            throw new Error('Respuesta inválida del servidor');
+        // CONTROLADOR DE CHAT
+        class ChatManager {
+            constructor() {
+                this.messages = [];
+                this.isLoading = false;
+                this.menuContext = buildMenuContext();
+                this.initializeElements();
+                this.attachEventListeners();
+            }
+
+            initializeElements() {
+                this.floatBtn = document.getElementById('chat-float-btn');
+                this.widget = document.getElementById('chat-widget');
+                this.messagesContainer = document.getElementById('chat-messages');
+                this.input = document.getElementById('chat-input');
+                this.sendBtn = document.getElementById('chat-send-btn');
+                this.closeBtn = document.getElementById('chat-close-btn');
+            }
+
+            attachEventListeners() {
+                this.floatBtn.addEventListener('click', () => this.toggleChat());
+                this.closeBtn.addEventListener('click', () => this.closeChat());
+                this.sendBtn.addEventListener('click', () => this.sendMessage());
+                this.input.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter' && !e.shiftKey) {
+                        e.preventDefault();
+                        this.sendMessage();
+                    }
+                });
+            }
+
+            toggleChat() {
+                if (this.widget.classList.contains('hidden')) {
+                    this.openChat();
+                } else {
+                    this.closeChat();
+                }
+            }
+
+            openChat() {
+                this.widget.classList.remove('hidden');
+                this.floatBtn.classList.add('hidden');
+                this.input.focus();
+
+                // Mostrar mensaje de bienvenida si es la primera vez
+                if (this.messages.length === 0) {
+                    this.addMessage('bot', '¡Ey, mae! 🌭 Bienvenido a Pilo\'s Dogs. Acá no voy a andar con preguntas aburridas... simplemente contame qué te provoca hoy. ¿Tenés hambre de algo específico? ¿Sos nuevo por acá? ¿Qué se te antoja? Yo te cuento qué es lo de lo mejor según mi experiencia 👌');
+                }
+            }
+
+            closeChat() {
+                this.widget.classList.add('hidden');
+                this.floatBtn.classList.remove('hidden');
+            }
+
+            addMessage(sender, text) {
+                const msgObj = { sender, text, timestamp: Date.now() };
+                this.messages.push(msgObj);
+                this.renderMessage(msgObj);
+                this.messagesContainer.scrollTop = this.messagesContainer.scrollHeight;
+            }
+
+            renderMessage(msgObj) {
+                const msgEl = document.createElement('div');
+                msgEl.className = `chat-message ${msgObj.sender}`;
+
+                const avatar = document.createElement('div');
+                avatar.className = 'chat-avatar';
+                avatar.innerHTML = msgObj.sender === 'user' ? '👤' : '🤖';
+
+                const bubble = document.createElement('div');
+                bubble.className = 'chat-bubble';
+                bubble.innerHTML = this.formatMessage(msgObj.text);
+
+                msgEl.appendChild(avatar);
+                msgEl.appendChild(bubble);
+                this.messagesContainer.appendChild(msgEl);
+            }
+
+            formatMessage(text) {
+                // Convertir saltos de línea a <br>
+                return text.replace(/\n/g, '<br>');
+            }
+
+            showTyping() {
+                const msgEl = document.createElement('div');
+                msgEl.className = 'chat-message bot';
+                msgEl.id = 'typing-indicator';
+
+                const avatar = document.createElement('div');
+                avatar.className = 'chat-avatar';
+                avatar.innerHTML = '🤖';
+
+                const typing = document.createElement('div');
+                typing.className = 'chat-typing';
+                typing.innerHTML = '<div class="chat-dot"></div><div class="chat-dot"></div><div class="chat-dot"></div>';
+
+                msgEl.appendChild(avatar);
+                msgEl.appendChild(typing);
+                this.messagesContainer.appendChild(msgEl);
+                this.messagesContainer.scrollTop = this.messagesContainer.scrollHeight;
+            }
+
+            removeTyping() {
+                const typing = document.getElementById('typing-indicator');
+                if (typing) typing.remove();
+            }
+
+            async sendMessage() {
+                const text = this.input.value.trim();
+                if (!text || this.isLoading) return;
+
+                this.input.value = '';
+                this.sendBtn.disabled = true;
+                this.isLoading = true;
+
+                // Agregar mensaje del usuario
+                this.addMessage('user', text);
+
+                // Mostrar indicador de escritura
+                this.showTyping();
+
+                try {
+                    // Llamar a OpenAI
+                    const response = await this.callOpenAI(text);
+                    this.removeTyping();
+                    this.addMessage('bot', response);
+                } catch (error) {
+                    console.error('Error:', error);
+                    this.removeTyping();
+                    this.addMessage('bot', '❌ Lo siento, hubo un error. Por favor intenta de nuevo.\nError: ' + error.message);
+                } finally {
+                    this.isLoading = false;
+                    this.sendBtn.disabled = false;
+                    this.input.focus();
+                }
+            }
+
+            async callOpenAI(userMessage) {
+                const payload = {
+                    model: "gpt-4o-mini",
+                    messages: [
+                        { role: "system", content: this.menuContext },
+                        { role: "user", content: userMessage }
+                    ],
+                    temperature: 0.7,
+                    max_tokens: 1024
+                };
+
+                const response = await fetch(OPENAI_API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${OPENAI_API_KEY}`
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.error?.message || `Error ${response.status}`);
+                }
+
+                const data = await response.json();
+
+                if (!data.choices || !data.choices[0]?.message?.content) {
+                    throw new Error('Respuesta inválida del servidor');
+                }
+
+                return data.choices[0].message.content;
+            }
         }
 
-        return data.candidates[0].content.parts[0].text;
-    }
-}
+        // Inicializar chat cuando el DOM esté listo
+        let chatManager;
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => {
+                chatManager = new ChatManager();
+            });
+        } else {
+            chatManager = new ChatManager();
+        }
 
-// Inicializar chat cuando el DOM esté listo
-let chatManager;
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-        chatManager = new ChatManager();
-    });
-} else {
-    chatManager = new ChatManager();
-}
-
-</script>
+        sk - proj - VCBV - Vd8lTu4AGzCPJpqCgLphIRIuarLe5S1BjyolIvRfomVg6w_xdzKo2fSdPRVdzoMZNHErwT3BlbkFJEHclA2bH - t9x2kc7XClNQ3qNEVQM9q - zqTG5lLJ9y9mu6CwNEMkoTa9JNHlwZRD8MIUuq3l2MA    </script>
 
 </body>
+
 </html>

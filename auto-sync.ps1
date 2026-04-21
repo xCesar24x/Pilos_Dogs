@@ -74,7 +74,7 @@ git push -u origin $branch
 if ($LASTEXITCODE -eq 0) {
     Write-Success "✅ Sincronización completada exitosamente"
     Write-Info "Branch: $branch"
-    Write-Info "Puedes ver los cambios en: https://github.com/xCesar24x/Pilosmenu"
+    Write-Info "Puedes ver los cambios en: https://github.com/xCesar24x/Pilos_Dogs"
 } else {
     Write-Error-Custom "Error durante la sincronización"
     exit 1
