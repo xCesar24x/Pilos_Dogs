@@ -3,12 +3,14 @@ name: Auto-sync Backup & Deploy
 on:
   push:
     branches: [ main, master ]
-  pull_request:
-    branches: [ main, master ]
   schedule:
     # Sincroniza cada 6 horas automáticamente
     - cron: '0 */6 * * *'
   workflow_dispatch:
+
+# ✅ FIX #1: Permisos de escritura necesarios para hacer git push
+permissions:
+  contents: write
 
 jobs:
   sync-backup:
@@ -18,8 +20,11 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
       with:
-        fetch-depth: 0
-    
+        # ✅ FIX #2: fetch-depth: 1 es suficiente y mucho más rápido
+        # (fetch-depth: 0 descargaba TODO el historial con los videos pesados)
+        fetch-depth: 1
+        token: ${{ secrets.GITHUB_TOKEN }}
+
     - name: Display file structure
       run: |
         echo "📁 Estructura de archivos del proyecto:"
@@ -27,34 +32,49 @@ jobs:
         find . -type f ! -path './.git/*' ! -path './.github/*' | head -20
         echo ""
         echo "📊 Estadísticas:"
-        echo "Total de archivos:" $(find . -type f ! -path './.git/*' ! -path './.github/*' | wc -l)
-    
+        echo "Total de archivos: $(find . -type f ! -path './.git/*' ! -path './.github/*' | wc -l)"
+
     - name: Verify multimedia content
       run: |
         echo "🎬 Contenido multimedia encontrado:"
-        echo "Videos:" $(find . -name "*.mp4" | wc -l)
-        echo "Imágenes:" $(find . -name "*.jpg" -o -name "*.jpeg" -o -name "*.png" | wc -l)
-    
+        VIDEO_COUNT=$(find . -name "*.mp4" | wc -l)
+        IMG_COUNT=$(find . \( -name "*.jpg" -o -name "*.jpeg" -o -name "*.png" \) | wc -l)
+        echo "  Videos (.mp4): $VIDEO_COUNT"
+        echo "  Imágenes (.jpg/.jpeg/.png): $IMG_COUNT"
+
     - name: Create sync log
       run: |
         mkdir -p logs
-        echo "✅ Sincronización completada: $(date)" >> logs/sync.log
-        echo "Branch: ${{ github.ref }}" >> logs/sync.log
-        echo "Commit SHA: ${{ github.sha }}" >> logs/sync.log
-    
+        {
+          echo "✅ Sincronización completada: $(date)"
+          echo "Branch: ${{ github.ref_name }}"
+          echo "Commit SHA: ${{ github.sha }}"
+          echo "Triggered by: ${{ github.event_name }}"
+        } >> logs/sync.log
+        echo "📄 Log generado correctamente"
+
     - name: Commit automatic changes (if any)
+      # ✅ FIX #3: Solo se hace push en eventos 'push' y 'schedule', nunca en PRs
+      if: github.event_name != 'pull_request'
       run: |
         git config --global user.name "GitHub Actions Bot"
         git config --global user.email "actions@github.com"
-        git add logs/ || true
-        git diff --quiet && git diff --staged --quiet || (git commit -m "🤖 Auto-sync: $(date '+%Y-%m-%d %H:%M:%S')" && git push origin HEAD:${{ github.ref_name }})
+        git add logs/
+        if git diff --staged --quiet; then
+          echo "ℹ️ No hay cambios nuevos en los logs, nada que commitear."
+        else
+          git commit -m "🤖 Auto-sync: $(date '+%Y-%m-%d %H:%M:%S')"
+          git push origin HEAD:${{ github.ref_name }}
+          echo "✅ Cambios sincronizados exitosamente"
+        fi
       continue-on-error: true
-    
+
     - name: Upload logs as artifacts
       uses: actions/upload-artifact@v4
-      if: always()
+      # ✅ FIX #4: Solo sube si el archivo de log realmente existe
+      if: always() && hashFiles('logs/sync.log') != ''
       with:
-        name: sync-logs
+        name: sync-logs-${{ github.run_number }}
         path: logs/
         retention-days: 30
 
@@ -63,14 +83,21 @@ jobs:
     name: Validate HTML Files
     steps:
     - uses: actions/checkout@v4
-    
+      with:
+        fetch-depth: 1
+
     - name: Check HTML files
       run: |
         echo "✅ Validando archivos HTML..."
+        FOUND=0
         if [ -f "index.html" ]; then
-          echo "✓ index.html encontrado"
+          echo "  ✓ index.html encontrado"
+          FOUND=$((FOUND+1))
         fi
         if [ -f "menu.html" ]; then
-          echo "✓ menu.html encontrado"
+          echo "  ✓ menu.html encontrado"
+          FOUND=$((FOUND+1))
         fi
-        ls -la *.html 2>/dev/null || echo "ℹ️ No HTML files found"
+        echo ""
+        echo "📄 Total de archivos HTML encontrados: $FOUND"
+        ls -lh *.html 2>/dev/null || echo "ℹ️ No se encontraron archivos HTML adicionales"
